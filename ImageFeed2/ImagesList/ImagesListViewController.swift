@@ -71,7 +71,7 @@ extension ImagesListViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
         guard let imageListCell = cell as? ImagesListCell else {
-            print("опачки")
+            print("Ошибка создания кастомной ячейки")
             return UITableViewCell()
         }
         
