@@ -30,11 +30,11 @@ class ImagesListViewController: UIViewController {
     }
     
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        //        guard let image = photosName[indexPath.row] as? UIImage else {
-        //            return
-        //        }
+        guard let image = UIImage(named: photosName[indexPath.row])  else {
+            return
+        }
         cell.cellImageView.contentMode = .scaleAspectFill
-        cell.imageView?.image = UIImage(named: photosName[indexPath.row])
+        cell.cellImageView.image = image
         cell.cellDataLabel.text = dateFormatter.string(from: Date())
         if (indexPath.row % 2 == 0){
             cell.cellLikeButton.setImage(UIImage(named: "likeActive"), for: .normal)
@@ -79,8 +79,4 @@ extension ImagesListViewController : UITableViewDataSource {
         
         return imageListCell
     }
-}
-
-func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
 }
