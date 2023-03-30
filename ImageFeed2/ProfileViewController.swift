@@ -7,14 +7,6 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-    @IBOutlet weak var exitButton: UIButton!
+final class ProfileViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    
-    @IBAction func clickedExitButton(_ sender: Any) {
-    }
 }
