@@ -46,14 +46,13 @@ final class ProfileViewController: UIViewController {
         
         nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = UIColor(named: "YP White")
-        nameLabel.font = UIFont(name: "System", size: 40)
-        //nameLabel.font = UIFont.systemFont(ofSize: 40)
+        nameLabel.font = UIFont.systemFont(ofSize: 23)
         
         view.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: imageViewAvatar.bottomAnchor, constant: 8),
-            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstraintForLeftElements)
         ])
     }
     
@@ -62,7 +61,7 @@ final class ProfileViewController: UIViewController {
         
         nicNameLabel.text = "@ekaterina_nov"
         nicNameLabel.textColor = UIColor(named: "YP Gray")
-        nicNameLabel.font = UIFont(name: "System", size: 13)
+        nicNameLabel.font = UIFont.systemFont(ofSize: 13)
         
         view.addSubview(nicNameLabel)
         
@@ -76,7 +75,7 @@ final class ProfileViewController: UIViewController {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         textLabel.text = "Hello, world!"
-        textLabel.font = UIFont(name: "System", size: 13)
+        textLabel.font = UIFont.systemFont(ofSize: 13)
         textLabel.textColor = .white
         
         view.addSubview(textLabel)
