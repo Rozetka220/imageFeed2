@@ -61,7 +61,7 @@ final class SingleImageViewController : UIViewController {
         
     }
     
-    @IBAction func didTapShareButton(_ sender: Any) {
+    @IBAction private func didTapShareButton(_ sender: Any) {
         print("Clicked share button")
         let items = [image]
         let aVC = UIActivityViewController(activityItems: items, applicationActivities: nil)

@@ -9,12 +9,12 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    let leadingConstraintForLeftElements = 16.0
+    private let leadingConstraintForLeftElements = 16.0
     
-    var imageViewAvatar = UIImageView()
-    var nameLabel = UILabel()
-    var nicNameLabel = UILabel()
-    var textLabel = UILabel()
+    private var imageViewAvatar = UIImageView()
+    private var nameLabel = UILabel()
+    private var nicNameLabel = UILabel()
+    private var textLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ final class ProfileViewController: UIViewController {
         
         nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = UIColor(named: "YP White")
-        nameLabel.font = UIFont.systemFont(ofSize: 23)
+        nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         
         view.addSubview(nameLabel)
         
@@ -103,7 +103,7 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    @IBAction func clickedExitButton(_ sender: UIButton){
+    @IBAction private func clickedExitButton(_ sender: UIButton){
         
     }
 }
