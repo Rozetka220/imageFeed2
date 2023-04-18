@@ -18,6 +18,8 @@
 		CC5D613D29EF13210034CB8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D613C29EF13210034CB8D /* Constants.swift */; };
 		CC5D614029EF172F0034CB8D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D613F29EF172F0034CB8D /* AuthViewController.swift */; };
 		CC5D614229EF17BE0034CB8D /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */; };
+		CC5D614429EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */; };
+		CC5D614629EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614529EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift */; };
 		CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC84D5AB29D20149007317D5 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		CC5D613C29EF13210034CB8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC5D613F29EF172F0034CB8D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolWebViewViewControllerDelegate.swift; sourceTree = "<group>"; };
+		CC5D614529EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolAuthViewControllerDelegate.swift; sourceTree = "<group>"; };
 		CC84D5AB29D20149007317D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 				CC5D613E29EF13280034CB8D /* Models */,
 				CC5D613F29EF172F0034CB8D /* AuthViewController.swift */,
 				CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */,
+				CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */,
+				CC5D614529EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -187,6 +193,8 @@
 				CC5D614029EF172F0034CB8D /* AuthViewController.swift in Sources */,
 				CC5D613D29EF13210034CB8D /* Constants.swift in Sources */,
 				CC0D777829D838B80095F2F9 /* SingleImageViewController.swift in Sources */,
+				CC5D614629EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift in Sources */,
+				CC5D614429EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift in Sources */,
 				CC5D614229EF17BE0034CB8D /* WebViewViewController.swift in Sources */,
 				CC4D466829C9F74000DDBF6E /* SceneDelegate.swift in Sources */,
 			);

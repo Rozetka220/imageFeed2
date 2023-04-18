@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants {
-    let accessKey = "_aGxZoR4YLyuXvZGKijjU6qYtAstJm0xvmNZIUXffmA"
+    let accessKey = "_aGxZoR4YLyuXvZGKijjU6qYtAstJm0xvmNZIUXffmA" //client_id
     let secretKey = "YSz3hJBNjhwhvyr2GfQPGrKeKZsm-6Z6NVU_mRxupLk"
     let redirectURI = "urn:ietf:wg:oauth:2.0:oob"
     let accessScope = "public+read_user+write_likes"
