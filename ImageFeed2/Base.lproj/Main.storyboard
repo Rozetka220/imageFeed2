@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -217,6 +218,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="AH4-TO-H26" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="THn-Zr-xJD"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoUnsplash" translatesAutoresizingMaskIntoConstraints="NO" id="hX4-0v-eFX">
                                 <rect key="frame" x="166.66666666666666" y="396" width="60" height="60"/>
@@ -242,6 +246,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCE-pD-FXC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3249.6183206106871" y="-837.32394366197184"/>
+        </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="AYp-HA-g5w">
+            <objects>
+                <viewController id="AH4-TO-H26" customClass="WebViewViewController" customModule="ImageFeed2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Ti-af-MVG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcT-nr-LE9">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fft-s5-xE0">
+                                <rect key="frame" x="9" y="55" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="iIN-pc-NHH"/>
+                                    <constraint firstAttribute="height" constant="24" id="moQ-k6-TRR"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="nav_back_button"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="AH4-TO-H26" eventType="touchUpInside" id="dWL-Us-J3v"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jzC-e3-Uji"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XcT-nr-LE9" firstAttribute="top" secondItem="4Ti-af-MVG" secondAttribute="top" id="J7v-CR-BcA"/>
+                            <constraint firstItem="Fft-s5-xE0" firstAttribute="top" secondItem="4Ti-af-MVG" secondAttribute="top" constant="55" id="S9F-ac-Rgg"/>
+                            <constraint firstAttribute="bottom" secondItem="XcT-nr-LE9" secondAttribute="bottom" id="Twh-5T-8Jg"/>
+                            <constraint firstItem="XcT-nr-LE9" firstAttribute="leading" secondItem="4Ti-af-MVG" secondAttribute="leading" id="Yhj-I9-Ls4"/>
+                            <constraint firstAttribute="trailing" secondItem="XcT-nr-LE9" secondAttribute="trailing" id="aoF-GI-yTm"/>
+                            <constraint firstItem="Fft-s5-xE0" firstAttribute="leading" secondItem="jzC-e3-Uji" secondAttribute="leading" constant="9" id="ija-pd-5SE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="XcT-nr-LE9" id="gJo-Zu-64M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6X-9f-kcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4333" y="-728"/>
         </scene>
         <!--ProfileViewController-->
         <scene sceneID="2MQ-Hj-ZM2">
@@ -283,6 +335,7 @@
         <image name="backward" width="24" height="24"/>
         <image name="likeActive" width="30" height="26"/>
         <image name="logoUnsplash" width="60" height="60"/>
+        <image name="nav_back_button" width="24" height="24"/>
         <image name="shareButton" width="51" height="50"/>
         <image name="tab_editorial_active" width="75" height="49"/>
         <image name="tab_profile_active.png tab_editorial_active.png tab_editorial_no_active.png" width="30" height="30"/>
@@ -295,5 +348,8 @@
         <namedColor name="tabbar">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
