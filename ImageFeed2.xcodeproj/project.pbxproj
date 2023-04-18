@@ -15,6 +15,7 @@
 		CC4D466F29C9F74200DDBF6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC4D466E29C9F74200DDBF6E /* Assets.xcassets */; };
 		CC4D467229C9F74200DDBF6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4D467029C9F74200DDBF6E /* LaunchScreen.storyboard */; };
 		CC4D467A29CA074100DDBF6E /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D467929CA074100DDBF6E /* ImagesListCell.swift */; };
+		CC5D613D29EF13210034CB8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D613C29EF13210034CB8D /* Constants.swift */; };
 		CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC84D5AB29D20149007317D5 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		CC4D467129C9F74200DDBF6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC4D467329C9F74200DDBF6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC4D467929CA074100DDBF6E /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
+		CC5D613C29EF13210034CB8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC84D5AB29D20149007317D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +64,7 @@
 		CC4D466429C9F74000DDBF6E /* ImageFeed2 */ = {
 			isa = PBXGroup;
 			children = (
+				CC5D613B29EF13100034CB8D /* Auth */,
 				CC0D777729D838B80095F2F9 /* SingleImageViewController.swift */,
 				CC4D467B29CA076300DDBF6E /* ImagesList */,
 				CC4D466529C9F74000DDBF6E /* AppDelegate.swift */,
@@ -82,6 +85,22 @@
 				CC4D467929CA074100DDBF6E /* ImagesListCell.swift */,
 			);
 			path = ImagesList;
+			sourceTree = "<group>";
+		};
+		CC5D613B29EF13100034CB8D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CC5D613E29EF13280034CB8D /* Models */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		CC5D613E29EF13280034CB8D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC5D613C29EF13210034CB8D /* Constants.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +178,7 @@
 				CC4D467A29CA074100DDBF6E /* ImagesListCell.swift in Sources */,
 				CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */,
 				CC4D466629C9F74000DDBF6E /* AppDelegate.swift in Sources */,
+				CC5D613D29EF13210034CB8D /* Constants.swift in Sources */,
 				CC0D777829D838B80095F2F9 /* SingleImageViewController.swift in Sources */,
 				CC4D466829C9F74000DDBF6E /* SceneDelegate.swift in Sources */,
 			);
