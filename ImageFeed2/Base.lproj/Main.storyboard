@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WU0-Kb-RcP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eFK-ns-Agv">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -192,6 +192,56 @@
             </objects>
             <point key="canvasLocation" x="378" y="-706"/>
         </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="Tij-o9-Xx9">
+            <objects>
+                <viewController id="eFK-ns-Agv" customClass="AuthViewController" customModule="ImageFeed2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dbQ-e5-VRv">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnj-sW-Vii">
+                                <rect key="frame" x="16" y="680" width="361" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="lcJ-JK-WNA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Войти">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoUnsplash" translatesAutoresizingMaskIntoConstraints="NO" id="hX4-0v-eFX">
+                                <rect key="frame" x="166.66666666666666" y="396" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6QG-c4-3hO"/>
+                                    <constraint firstAttribute="width" constant="60" id="oQc-Hn-IUk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1sE-HY-JjS"/>
+                        <color key="backgroundColor" name="YP Black (iOS)"/>
+                        <constraints>
+                            <constraint firstItem="1sE-HY-JjS" firstAttribute="trailing" secondItem="Dnj-sW-Vii" secondAttribute="trailing" constant="16" id="QEh-lC-sdQ"/>
+                            <constraint firstItem="Dnj-sW-Vii" firstAttribute="centerX" secondItem="dbQ-e5-VRv" secondAttribute="centerX" id="SbM-X4-R9H"/>
+                            <constraint firstItem="hX4-0v-eFX" firstAttribute="centerX" secondItem="dbQ-e5-VRv" secondAttribute="centerX" id="f0Y-e2-wBR"/>
+                            <constraint firstItem="Dnj-sW-Vii" firstAttribute="leading" secondItem="1sE-HY-JjS" secondAttribute="leading" constant="16" id="qly-V7-Eae"/>
+                            <constraint firstItem="1sE-HY-JjS" firstAttribute="bottom" secondItem="Dnj-sW-Vii" secondAttribute="bottom" constant="90" id="vbP-G5-hdx"/>
+                            <constraint firstItem="hX4-0v-eFX" firstAttribute="centerY" secondItem="dbQ-e5-VRv" secondAttribute="centerY" id="yeo-c3-TrX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VCE-pD-FXC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2323" y="-837"/>
+        </scene>
         <!--ProfileViewController-->
         <scene sceneID="2MQ-Hj-ZM2">
             <objects>
@@ -213,6 +263,7 @@
         <image name="0" width="200" height="132"/>
         <image name="backward" width="24" height="24"/>
         <image name="likeActive" width="30" height="26"/>
+        <image name="logoUnsplash" width="60" height="60"/>
         <image name="shareButton" width="51" height="50"/>
         <image name="tab_editorial_active" width="75" height="49"/>
         <image name="tab_profile_active.png tab_editorial_active.png tab_editorial_no_active.png" width="30" height="30"/>
