@@ -35,8 +35,8 @@ final class WebViewViewController: UIViewController {
         
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: constants.accessKey),
-            URLQueryItem(name: "redirect_uri", value: constants.secretKey),
-           URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "redirect_uri", value: constants.redirectURI),
+            URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: constants.accessScope)                     //5
          ]
         
@@ -56,10 +56,14 @@ extension WebViewViewController: WKNavigationDelegate {
         decidePolicyFor navigationAction: WKNavigationAction,
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
+        print("ты вызываешься или нет")
          if let code = code(from: navigationAction) { //1
                 //TODO: process code                     //2
+             print("эу, эээ")
+             delegate.webViewViewController(self, didAuthenticateWithCode: code)
                 decisionHandler(.cancel) //3
           } else {
+                print("Код оказался пустым")
                 decisionHandler(.allow) //4
             }
     }
@@ -72,6 +76,7 @@ extension WebViewViewController: WKNavigationDelegate {
             let items = urlComponents.queryItems,                           //4
             let codeItem = items.first(where: { $0.name == "code" })        //5
         {
+            print("CodeItem", codeItem)
             return codeItem.value                                           //6
         } else {
             return nil

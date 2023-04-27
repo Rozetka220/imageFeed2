@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Структура данных, выданных Unsplash при регистрации приложения
 struct Constants {
     let accessKey = "_aGxZoR4YLyuXvZGKijjU6qYtAstJm0xvmNZIUXffmA" //client_id
     let secretKey = "YSz3hJBNjhwhvyr2GfQPGrKeKZsm-6Z6NVU_mRxupLk"
