@@ -28,6 +28,9 @@ class ImagesListViewController: UIViewController {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
         guard let image = UIImage(named: photosName[indexPath.row])  else {
@@ -71,7 +74,7 @@ extension ImagesListViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
         guard let imageListCell = cell as? ImagesListCell else {
-            print("опачки")
+            print("Ошибка создания кастомной ячейки")
             return UITableViewCell()
         }
         
@@ -80,3 +83,5 @@ extension ImagesListViewController : UITableViewDataSource {
         return imageListCell
     }
 }
+
+
