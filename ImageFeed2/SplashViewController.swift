@@ -8,11 +8,14 @@
 import UIKit
 
 final class SplashViewController: UIViewController {
-    override func viewWillAppear(_ animated: Bool) {
+    
+    weak var delegate: AuthViewController?
+    
+    override func viewDidAppear(_ animated: Bool) {
         if checkToken() {
-            //кидаем на галерею
+            performSegue(withIdentifier: "toTabBar", sender: nil)
         } else {
-            //кидаем на авторизацию
+            performSegue(withIdentifier: "goToAuth", sender: nil)
         }
     }
     
@@ -23,5 +26,25 @@ final class SplashViewController: UIViewController {
         } else {
             return false
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "goToAuth" else { return  super.prepare(for: segue, sender: sender) }
+        guard let destination = segue.destination as? AuthViewController else { return }
+        destination.splashDelegate = self
+    }
+    //в учебнике данный метод как private, но как я тогда вызову этот метод снаружи?
+    internal func switchToTabBarController() {
+        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+        
+        let tabBarController = UIStoryboard(name: "Main", bundle: .main)
+            .instantiateViewController(withIdentifier: "tabBarID")
+
+        window.rootViewController = tabBarController
+    }
+}
+
+extension SplashViewController: AuthViewControllerDelegate {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
     }
 }

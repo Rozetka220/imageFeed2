@@ -67,13 +67,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CC3F2A1729F5AD8E0071CC51 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		CC4D465929C9F74000DDBF6E = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +113,6 @@
 		CC5D613B29EF13100034CB8D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				CC3F2A1729F5AD8E0071CC51 /* Protocols */,
 				CC5D613E29EF13280034CB8D /* Models */,
 				CC5D613F29EF172F0034CB8D /* AuthViewController.swift */,
 				CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */,

@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol AuthViewControllerDelegate: AnyObject {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
+    func switchToTabBarController()
+}
+
 class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegate {
     let segueToWebView = "ShowWebView"
     let oAuth2Service = OAuth2Service()
     var oAuth2TokenStorage = OAuth2TokenStorage()
+    weak var splashDelegate: SplashViewController?
         
     override func viewDidLoad() {
         
@@ -29,10 +35,15 @@ class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegat
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         print("ВЫЗОВ fetchAuthToken")
         //надо вызвать fetchAuthToken из OAuth2Serv
+        
+        splashDelegate?.authViewController(self, didAuthenticateWithCode: code)
+        
         oAuth2Service.fetchAuthToken(code: code) { [self] result in
             switch result {
             case.success(let token):
                 oAuth2TokenStorage.token = token
+                //вызвать switch to tabBar
+                splashDelegate?.switchToTabBarController()
                 print("Token = ", oAuth2TokenStorage.token)
             case.failure(let error):
                 print("Error = ", error)
