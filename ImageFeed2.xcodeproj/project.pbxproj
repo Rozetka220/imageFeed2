@@ -24,7 +24,6 @@
 		CC5D614029EF172F0034CB8D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D613F29EF172F0034CB8D /* AuthViewController.swift */; };
 		CC5D614229EF17BE0034CB8D /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */; };
 		CC5D614429EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */; };
-		CC5D614629EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614529EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift */; };
 		CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC84D5AB29D20149007317D5 /* ProfileViewController.swift */; };
 		CCB868D829F07F4000F31DA1 /* OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB868D729F07F4000F31DA1 /* OAuth2Service.swift */; };
 		CCB868DA29F082F100F31DA1 /* POSTparamBearerToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB868D929F082F100F31DA1 /* POSTparamBearerToken.swift */; };
@@ -50,7 +49,6 @@
 		CC5D613F29EF172F0034CB8D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolWebViewViewControllerDelegate.swift; sourceTree = "<group>"; };
-		CC5D614529EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolAuthViewControllerDelegate.swift; sourceTree = "<group>"; };
 		CC84D5AB29D20149007317D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CCB868D729F07F4000F31DA1 /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
 		CCB868D929F082F100F31DA1 /* POSTparamBearerToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTparamBearerToken.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				CC5D613F29EF172F0034CB8D /* AuthViewController.swift */,
 				CC5D614129EF17BE0034CB8D /* WebViewViewController.swift */,
 				CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */,
-				CC5D614529EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift */,
 				CCB868D729F07F4000F31DA1 /* OAuth2Service.swift */,
 				CC3F2A1529F55F880071CC51 /* OAuth2TokenStorage.swift */,
 			);
@@ -220,7 +217,6 @@
 				CC3F2A1029F47CE70071CC51 /* UnsplashOAuth2Response.swift in Sources */,
 				CC5D613D29EF13210034CB8D /* Constants.swift in Sources */,
 				CC0D777829D838B80095F2F9 /* SingleImageViewController.swift in Sources */,
-				CC5D614629EF26160034CB8D /* ProtocolAuthViewControllerDelegate.swift in Sources */,
 				CC3F2A1229F480220071CC51 /* UnsplashOAuth2ResponseError.swift in Sources */,
 				CC5D614429EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift in Sources */,
 				CC5D614229EF17BE0034CB8D /* WebViewViewController.swift in Sources */,

@@ -25,7 +25,6 @@ class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueToWebView {
             let vc = segue.destination as! WebViewViewController
-            //let webView = WebViewViewController()
             vc.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)
@@ -33,9 +32,6 @@ class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegat
     }
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        print("ВЫЗОВ fetchAuthToken")
-        //надо вызвать fetchAuthToken из OAuth2Serv
-        
         splashDelegate?.authViewController(self, didAuthenticateWithCode: code)
         
         oAuth2Service.fetchAuthToken(code: code) { [self] result in
