@@ -10,15 +10,16 @@ import WebKit
 
 final class WebViewViewController: UIViewController {
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet private weak var webView: WKWebView!
     
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet private weak var progressView: UIProgressView!
     
     weak var delegate : ProtocolWebViewViewControllerDelegate!
     
-    let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    let constants = Constants()
+   // let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     
-    @IBAction func didTapBackButton(_ sender: Any) {
+    @IBAction private func didTapBackButton(_ sender: Any) {
         delegate.webViewViewControllerDidCancel(self)
     }
     
@@ -29,9 +30,7 @@ final class WebViewViewController: UIViewController {
     }
     
     private func codeRequest(){
-        let constants = Constants()
-        
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
+        var urlComponents = URLComponents(string: constants.unsplashAuthorizeURLString)!
         
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: constants.accessKey),

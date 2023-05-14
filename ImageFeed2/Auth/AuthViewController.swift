@@ -9,20 +9,16 @@ import UIKit
 
 protocol AuthViewControllerDelegate: AnyObject {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
-    func switchToTabBarController()
 }
 
-class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegate {
+final class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegate {
     let segueToWebView = "ShowWebView"
     let oAuth2Service = OAuth2Service()
     var oAuth2TokenStorage = OAuth2TokenStorage()
     weak var splashDelegate: SplashViewController?
-        
-    override func viewDidLoad() {
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //MARK: Не рекомендую использовать принудительное приведение типов, лучше сделать проверку через guard let
         if segue.identifier == segueToWebView {
             let vc = segue.destination as! WebViewViewController
             vc.delegate = self
@@ -33,18 +29,6 @@ class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegat
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         splashDelegate?.authViewController(self, didAuthenticateWithCode: code)
-        
-        oAuth2Service.fetchAuthToken(code: code) { [self] result in
-            switch result {
-            case.success(let token):
-                oAuth2TokenStorage.token = token
-                //вызвать switch to tabBar
-                splashDelegate?.switchToTabBarController()
-                print("Token = ", oAuth2TokenStorage.token)
-            case.failure(let error):
-                print("Error = ", error)
-            }
-        }
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
