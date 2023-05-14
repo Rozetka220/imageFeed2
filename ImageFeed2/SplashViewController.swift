@@ -33,13 +33,8 @@ final class SplashViewController: UIViewController {
            let viewController = navigationController.viewControllers[0] as? AuthViewController {
             viewController.splashDelegate = self
         }
-//
-//        guard segue.identifier == "goToAuth" else { return  super.prepare(for: segue, sender: sender) }
-//        guard let destination = segue.destination as? AuthViewController else { return }
-//        destination.splashDelegate = self
-        
     }
-    //в учебнике данный метод как private, но как я тогда вызову этот метод снаружи?
+        
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
         

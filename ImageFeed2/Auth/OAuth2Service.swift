@@ -1,6 +1,6 @@
 import UIKit
 
-class OAuth2Service {
+final class OAuth2Service {
     func fetchAuthToken(code: String, completion: @escaping (Swift.Result<String, UnsplashError>) -> Void) {
         //формируем url
         let url = createURL(code: code)

@@ -18,9 +18,8 @@ final class AuthViewController: UIViewController, ProtocolWebViewViewControllerD
     weak var splashDelegate: SplashViewController?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //MARK: Не рекомендую использовать принудительное приведение типов, лучше сделать проверку через guard let
         if segue.identifier == segueToWebView {
-            let vc = segue.destination as! WebViewViewController
+            guard let vc = segue.destination as? WebViewViewController else {return}
             vc.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)

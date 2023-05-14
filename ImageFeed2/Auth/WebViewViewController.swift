@@ -17,7 +17,6 @@ final class WebViewViewController: UIViewController {
     weak var delegate : ProtocolWebViewViewControllerDelegate!
     
     let constants = Constants()
-   // let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     
     @IBAction private func didTapBackButton(_ sender: Any) {
         delegate.webViewViewControllerDidCancel(self)
