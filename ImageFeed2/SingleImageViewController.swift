@@ -25,6 +25,10 @@ final class SingleImageViewController : UIViewController {
     }
     @IBOutlet private weak var imageView: UIImageView!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image

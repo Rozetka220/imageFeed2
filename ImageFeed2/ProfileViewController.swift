@@ -16,6 +16,10 @@ final class ProfileViewController: UIViewController {
     private var nicNameLabel = UILabel()
     private var textLabel = UILabel()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createProfileImage()
