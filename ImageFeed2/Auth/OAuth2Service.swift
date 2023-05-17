@@ -14,18 +14,20 @@ final class OAuth2Service {
             
             DispatchQueue.main.async {
                 //распарсинг ответа
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let response = response as? HTTPURLResponse {
                     switch response.statusCode {
                     case 200..<300:
                         do {
-                            let resp = try JSONDecoder().decode(UnsplashOAuth2Response.self, from: data)
-                            completion(.success(resp.access_token))
+                            let resp = try decoder.decode(UnsplashOAuth2Response.self, from: data)
+                            completion(.success(resp.accessToken))
                         } catch {
                             assertionFailure("Произошла ошибка при обработке полученного от сервера ответа с кодом 200..<300")
                         }
                     default:
                         do {
-                            let resp = try JSONDecoder().decode(UnsplashOAuth2ResponseError.self, from: data)
+                            let resp = try decoder.decode(UnsplashOAuth2ResponseError.self, from: data)
                             completion(.failure(.errorRequest))
                         } catch {
                             assertionFailure("Произошла ошибка при обработке полученного от сервера ответа с кодом 300..<600")

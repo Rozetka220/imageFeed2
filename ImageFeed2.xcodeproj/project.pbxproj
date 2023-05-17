@@ -26,7 +26,6 @@
 		CC5D614429EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */; };
 		CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC84D5AB29D20149007317D5 /* ProfileViewController.swift */; };
 		CCB868D829F07F4000F31DA1 /* OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB868D729F07F4000F31DA1 /* OAuth2Service.swift */; };
-		CCB868DA29F082F100F31DA1 /* POSTparamBearerToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB868D929F082F100F31DA1 /* POSTparamBearerToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +50,6 @@
 		CC5D614329EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolWebViewViewControllerDelegate.swift; sourceTree = "<group>"; };
 		CC84D5AB29D20149007317D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CCB868D729F07F4000F31DA1 /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
-		CCB868D929F082F100F31DA1 /* POSTparamBearerToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTparamBearerToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				CC5D613C29EF13210034CB8D /* Constants.swift */,
-				CCB868D929F082F100F31DA1 /* POSTparamBearerToken.swift */,
 				CC3F2A0F29F47CE70071CC51 /* UnsplashOAuth2Response.swift */,
 				CC3F2A1129F480220071CC51 /* UnsplashOAuth2ResponseError.swift */,
 				CC3F2A1329F5576D0071CC51 /* UnsplashError.swift */,
@@ -204,7 +201,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCB868DA29F082F100F31DA1 /* POSTparamBearerToken.swift in Sources */,
 				CC4D466A29C9F74000DDBF6E /* ImagesListViewController.swift in Sources */,
 				CC4D467A29CA074100DDBF6E /* ImagesListCell.swift in Sources */,
 				CC3F2A1B29FAE82B0071CC51 /* SplashViewController.swift in Sources */,
