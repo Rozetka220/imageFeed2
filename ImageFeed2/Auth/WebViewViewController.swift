@@ -14,7 +14,7 @@ final class WebViewViewController: UIViewController {
     
     @IBOutlet private weak var progressView: UIProgressView!
     
-    weak var delegate : ProtocolWebViewViewControllerDelegate!
+    weak var delegate: WebViewViewControllerDelegate!
     
     let constants = Constants()
     
@@ -36,7 +36,7 @@ final class WebViewViewController: UIViewController {
             URLQueryItem(name: "redirect_uri", value: constants.redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: constants.accessScope)
-         ]
+        ]
         
         let url = urlComponents.url!
         
@@ -52,12 +52,12 @@ extension WebViewViewController: WKNavigationDelegate {
         decidePolicyFor navigationAction: WKNavigationAction,
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
-         if let code = code(from: navigationAction) {
-             delegate.webViewViewController(self, didAuthenticateWithCode: code)
-                decisionHandler(.cancel)
-          } else {
-                decisionHandler(.allow)
-            }
+        if let code = code(from: navigationAction) {
+            delegate.webViewViewController(self, didAuthenticateWithCode: code)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
     }
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
@@ -103,7 +103,7 @@ extension WebViewViewController {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
-
+    
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001

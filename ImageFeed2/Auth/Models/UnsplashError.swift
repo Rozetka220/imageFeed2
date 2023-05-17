@@ -9,4 +9,5 @@ import Foundation
 //MARK: - Используется для обрабоки ошибок в замыкании при запросе bearerToken
 enum UnsplashError: Error {
     case errorRequest
+    case parsingError
 }

@@ -68,5 +68,101 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "371BB640-5E51-4807-9A9C-4DE631D2719C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/Auth/OAuth2Service.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetchAuthToken(code:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "345BA858-1DB0-4BA1-9A28-4D460BF7271E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/Auth/OAuth2Service.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "fetchAuthToken(code:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "61052CC1-564B-444C-8E55-9CF9060BB330"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/SplashViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "authViewController(_:didAuthenticateWithCode:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "61052CC1-564B-444C-8E55-9CF9060BB330 - 2d45edb96b7ed74b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageFeed2.SplashViewController.authViewController(_: ImageFeed2.AuthViewController, didAuthenticateWithCode: Swift.String) -&gt; ()"
+                  moduleName = "ImageFeed2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/odelmodel/Documents/YandexPracticum/sprint_7_to_13_2/ImageFeed2/ImageFeed2/SplashViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "61052CC1-564B-444C-8E55-9CF9060BB330 - 64fd46e92f9b72b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, ImageFeed2.UnsplashError&gt;) -&gt; () in ImageFeed2.SplashViewController.authViewController(_: ImageFeed2.AuthViewController, didAuthenticateWithCode: Swift.String) -&gt; ()"
+                  moduleName = "ImageFeed2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/odelmodel/Documents/YandexPracticum/sprint_7_to_13_2/ImageFeed2/ImageFeed2/SplashViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66C22B18-49DC-451E-826C-F788ED03A12B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/Auth/AuthViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "webViewViewController(_:didAuthenticateWithCode:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -11,11 +11,11 @@ protocol AuthViewControllerDelegate: AnyObject {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
 }
 
-final class AuthViewController: UIViewController, ProtocolWebViewViewControllerDelegate {
+final class AuthViewController: UIViewController, WebViewViewControllerDelegate {
     let segueToWebView = "ShowWebView"
     let oAuth2Service = OAuth2Service()
     var oAuth2TokenStorage = OAuth2TokenStorage()
-    weak var splashDelegate: SplashViewController?
+    weak var delegate: AuthViewControllerDelegate?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueToWebView {
@@ -27,7 +27,7 @@ final class AuthViewController: UIViewController, ProtocolWebViewViewControllerD
     }
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        splashDelegate?.authViewController(self, didAuthenticateWithCode: code)
+        delegate?.authViewController(self, didAuthenticateWithCode: code)
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {

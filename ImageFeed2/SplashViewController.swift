@@ -21,7 +21,7 @@ final class SplashViewController: UIViewController {
     }
     
     private func checkToken() -> Bool{
-        if oAuth2TokenStorage.token != "" {
+        if oAuth2TokenStorage.token != nil {
             return true
         } else {
             return false
@@ -31,16 +31,16 @@ final class SplashViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navigationController = segue.destination as? UINavigationController,
            let viewController = navigationController.viewControllers[0] as? AuthViewController {
-            viewController.splashDelegate = self
+            viewController.delegate = self
         }
     }
-        
+    
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
         
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "tabBarID")
-
+        
         window.rootViewController = tabBarController
     }
 }
@@ -49,13 +49,31 @@ extension SplashViewController: AuthViewControllerDelegate {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         vc.oAuth2Service.fetchAuthToken(code: code) { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case.success(let token):
-                //зачем здесь необходимо использовать self?
-                self.oAuth2TokenStorage.token = token
-                self.switchToTabBarController()
-            case.failure(let error):
-                assertionFailure(error.localizedDescription)
+            DispatchQueue.main.async {
+                switch result {
+                case.success(let token):
+                    self.oAuth2TokenStorage.token = token
+                    self.switchToTabBarController()
+                case.failure(let error):
+                    //вывести алерт с ошибкой
+                    print("alert")
+//                    let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера \(error.localizedDescription)", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
+//                        NSLog("The \"OK\" alert occured.")
+//                    }))
+//                    self.present(alert, animated: true, completion: nil)
+  
+                 //   Вариант от chatGPT
+                    
+                    
+//                    if let topController = UIApplication.shared.windows.filter ({$0.isKeyWindow}).first?.rootViewController {
+//                        let alertController = UIAlertController(title: "Заголовок", message: "Сообщение", preferredStyle: .alert)
+//                        // здесь вы можете добавить действия для вашего UIAlertController
+//                        topController.present(alertController, animated: true, completion: nil)
+//                    }
+
+                    
+                }
             }
         }
     }
