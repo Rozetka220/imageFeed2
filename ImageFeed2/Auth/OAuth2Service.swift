@@ -8,9 +8,10 @@ final class OAuth2Service {
         let request = createHTTPRequest(url: url)
         //создаем задачу (url-session)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else { assertionFailure("No Data"); return}
+            //Считаю, что использование assertionFailure является возможным, так как крашит приложение только в дебаге, что позволит легче находить ошибки. Для релизной версии есть .failure
+            guard let data = data else { assertionFailure("No Data"); completion(.failure(.dataError)); return}
             //если ошибка будет на стороне клиента, а не сервера. В противном случае ошибка будет обработана в Dispatch
-            guard error == nil else {assertionFailure("Error from request"); return}
+            guard error == nil else {assertionFailure("Error from request"); completion(.failure(.errorByClient)); return}
             DispatchQueue.main.async {
                 //распарсинг ответа
                 let decoder = JSONDecoder()

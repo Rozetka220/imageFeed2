@@ -10,4 +10,6 @@ import Foundation
 enum UnsplashError: Error {
     case errorRequest
     case parsingError
+    case dataError
+    case errorByClient
 }
