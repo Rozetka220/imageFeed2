@@ -28,6 +28,10 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         delegate?.authViewController(self, didAuthenticateWithCode: code)
+        let alertController = UIAlertController(title: "Ошибка", message: "huita", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                present(alertController, animated: true, completion: nil)
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {

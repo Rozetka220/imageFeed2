@@ -11,6 +11,7 @@ final class SplashViewController: UIViewController {
     
     private let oAuth2TokenStorage = OAuth2TokenStorage()
     weak var delegate: AuthViewController?
+    weak var delegate2: PresentAlertDelegate?
     
     override func viewDidAppear(_ animated: Bool) {
         if checkToken() {
@@ -46,6 +47,16 @@ final class SplashViewController: UIViewController {
 }
 
 extension SplashViewController: AuthViewControllerDelegate {
+    
+    func presentAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        //self.present(alert, animated: true, completion: nil)
+        return alert
+    }
+    
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         vc.oAuth2Service.fetchAuthToken(code: code) { [weak self] result in
             guard let self = self else { return }
@@ -57,22 +68,10 @@ extension SplashViewController: AuthViewControllerDelegate {
                 case.failure(let error):
                     //вывести алерт с ошибкой
                     print("alert")
-//                    let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера \(error.localizedDescription)", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
-//                        NSLog("The \"OK\" alert occured.")
-//                    }))
-//                    self.present(alert, animated: true, completion: nil)
-  
-                 //   Вариант от chatGPT
-                    
-                    
-//                    if let topController = UIApplication.shared.windows.filter ({$0.isKeyWindow}).first?.rootViewController {
-//                        let alertController = UIAlertController(title: "Заголовок", message: "Сообщение", preferredStyle: .alert)
-//                        // здесь вы можете добавить действия для вашего UIAlertController
-//                        topController.present(alertController, animated: true, completion: nil)
-//                    }
-
-                    
+                    if let presentedViewController = self.presentedViewController {
+                        presentedViewController.present(self.presentAlert(), animated: true)
+                    }
+                   
                 }
             }
         }

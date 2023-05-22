@@ -100,4 +100,16 @@ extension ImagesListViewController : UITableViewDataSource {
     }
 }
 
+extension ImagesListViewController: PresentAlertDelegate {
+    func presentAlert() {
+        let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
 
+protocol PresentAlertDelegate: AnyObject {
+    func presentAlert()
+}
