@@ -11,7 +11,6 @@ final class SplashViewController: UIViewController {
     
     private let oAuth2TokenStorage = OAuth2TokenStorage()
     weak var delegate: AuthViewController?
-    weak var delegate2: PresentAlertDelegate?
     
     override func viewDidAppear(_ animated: Bool) {
         if checkToken() {
@@ -48,13 +47,21 @@ final class SplashViewController: UIViewController {
 
 extension SplashViewController: AuthViewControllerDelegate {
     
-    func presentAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера", preferredStyle: .alert)
+    private func presentAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера, повторите попытку позже", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
+            self.BackToSplashViewController()
         }))
-        //self.present(alert, animated: true, completion: nil)
         return alert
+    }
+    
+    private func BackToSplashViewController() {
+        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+        
+        let splashViewController = UIStoryboard(name: "Main", bundle: .main)
+            .instantiateViewController(withIdentifier: "splashViewControllerID")
+        
+        window.rootViewController = splashViewController
     }
     
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
@@ -66,12 +73,7 @@ extension SplashViewController: AuthViewControllerDelegate {
                     self.oAuth2TokenStorage.token = token
                     self.switchToTabBarController()
                 case.failure(let error):
-                    //вывести алерт с ошибкой
-                    print("alert")
-                    if let presentedViewController = self.presentedViewController {
-                        presentedViewController.present(self.presentAlert(), animated: true)
-                    }
-                   
+                    vc.presentedViewController?.present(self.presentAlert(), animated: true)
                 }
             }
         }

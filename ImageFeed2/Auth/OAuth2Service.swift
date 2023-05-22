@@ -19,12 +19,12 @@ final class OAuth2Service {
                     switch response.statusCode {
                     case 200..<300:
                         completion(.failure(.parsingError)) //нарочно провоцирую для вывода алерта
-                        do {
-                            let resp = try decoder.decode(UnsplashOAuth2Response.self, from: data)
-                            completion(.success(resp.accessToken))
-                        } catch {
-                            completion(.failure(.parsingError))
-                        }
+//                        do {
+//                            let resp = try decoder.decode(UnsplashOAuth2Response.self, from: data)
+//                            completion(.success(resp.accessToken))
+//                        } catch {
+//                            completion(.failure(.parsingError))
+//                        }
                     default:
                         do {
                             let resp = try decoder.decode(UnsplashOAuth2ResponseError.self, from: data)
