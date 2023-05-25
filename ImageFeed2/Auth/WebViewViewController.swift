@@ -14,12 +14,12 @@ final class WebViewViewController: UIViewController {
     
     @IBOutlet private weak var progressView: UIProgressView!
     
-    weak var delegate: WebViewViewControllerDelegate!
+    weak var delegate: WebViewViewControllerDelegate?
     
     let constants = Constants()
     
     @IBAction private func didTapBackButton(_ sender: Any) {
-        delegate.webViewViewControllerDidCancel(self)
+        delegate?.webViewViewControllerDidCancel(self)
     }
     
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ extension WebViewViewController: WKNavigationDelegate {
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
         if let code = code(from: navigationAction) {
-            delegate.webViewViewController(self, didAuthenticateWithCode: code)
+            delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)

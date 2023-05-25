@@ -21,11 +21,7 @@ final class SplashViewController: UIViewController {
     }
     
     private func checkToken() -> Bool{
-        if oAuth2TokenStorage.token != nil {
-            return true
-        } else {
-            return false
-        }
+        return oAuth2TokenStorage.token != nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,7 +44,7 @@ final class SplashViewController: UIViewController {
 extension SplashViewController: AuthViewControllerDelegate {
     
     private func presentAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "Внимание!", message: "Ошбика чтения ответа сервера, повторите попытку позже", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Внимание!", message: "Ошибка чтения ответа сервера, повторите попытку позже", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
             self.BackToSplashViewController()
         }))
