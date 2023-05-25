@@ -7,15 +7,15 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
-    var imageListCell = ImagesListCell()
+    private var imageListCell = ImagesListCell()
     
-    private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
     
     @IBOutlet private var tableView: UITableView!
     
-    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet private weak var dataLabel: UILabel!
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
@@ -36,8 +36,8 @@ class ImagesListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowSingleImageSegueIdentifier {
-            let viewController = segue.destination as! SingleImageViewController
+        if segue.identifier == showSingleImageSegueIdentifier {
+            guard let viewController = segue.destination as? SingleImageViewController else {assertionFailure("Не сработал   segue при открытии картинки в одном окне. Возможно стоит перепроверить идентификатор segue и viewController для отображения картинки во весь экран"); return}
             let indexPath = sender as! IndexPath
             let image = UIImage(named: photosName[indexPath.row])
             viewController.image = image
@@ -65,7 +65,7 @@ class ImagesListViewController: UIViewController {
 
 extension ImagesListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
+        performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,5 +99,3 @@ extension ImagesListViewController : UITableViewDataSource {
         return imageListCell
     }
 }
-
-
