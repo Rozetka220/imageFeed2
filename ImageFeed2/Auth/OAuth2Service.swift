@@ -1,11 +1,29 @@
 import UIKit
 
 final class OAuth2Service {
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
     func fetchAuthToken(code: String, completion: @escaping (Swift.Result<String, UnsplashError>) -> Void) {
         //формируем url
         let url = createURL(code: code)
         //создаем  http запрос (url-request)
         let request = createHTTPRequest(url: url)
+        
+        //гонка потоков
+        assert(Thread.isMainThread)
+        if task != nil {
+            if lastCode != code {
+                task?.cancel()
+            } else {
+                return
+            }
+        } else {
+            if lastCode == code {
+                return
+            }
+        }
+        lastCode = code
         //создаем задачу (url-session)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             //Считаю, что использование assertionFailure является возможным, так как крашит приложение только в дебаге, что позволит легче находить ошибки. Для релизной версии есть .failure
@@ -22,6 +40,10 @@ final class OAuth2Service {
                         do {
                             let resp = try decoder.decode(UnsplashOAuth2Response.self, from: data)
                             completion(.success(resp.accessToken))
+                            self.task = nil
+                            if error != nil {
+                                self.lastCode = nil
+                            }
                         } catch {
                             completion(.failure(.parsingError))
                         }
@@ -38,6 +60,7 @@ final class OAuth2Service {
                 }
             }
         }
+        self.task = task
         task.resume()
     }
     
