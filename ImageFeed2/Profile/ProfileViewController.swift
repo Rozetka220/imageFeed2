@@ -8,7 +8,6 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
-    
     private let leadingConstraintForLeftElements = 16.0
     
     private var imageViewAvatar = UIImageView()
@@ -16,17 +15,37 @@ final class ProfileViewController: UIViewController {
     private var nicNameLabel = UILabel()
     private var textLabel = UILabel()
     
+    private var profileService = ProfileService()
+    let getBearerToken = OAuth2TokenStorage().token!
+    
+    private var alertDelegate: AlertPresenterDelegate?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createProfileImage()
-        createLabelName()
-        createNicNameLabel()
-        createTextLabel()
-        createExitButton()
+        alertDelegate = AlertPresenter()
+        alertDelegate?.delegate = self
+        
+        UIBlockingProgressHUD.show()
+        
+        profileService.fetchProfile(getBearerToken) { result in
+            switch result {
+            case .success(let profile):
+                self.createProfileImage()
+                self.createLabelName(profile.name)
+                self.createNicNameLabel(profile.loginName)
+                self.createTextLabel(profile.bio)
+                self.createExitButton()
+            default:
+                self.alertDelegate?.presentAlert(model: self.createAlertText())
+            }
+        }
+        
+        UIBlockingProgressHUD.dismiss()
+        
     }
     
     private func createProfileImage(){
@@ -45,10 +64,10 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func createLabelName(){
+    private func createLabelName(_ name: String){
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        nameLabel.text = "Екатерина Новикова"
+        nameLabel.text = name //"Екатерина Новикова"
         nameLabel.textColor = UIColor(named: "YP White")
         nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         
@@ -60,10 +79,10 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func createNicNameLabel() {
+    private func createNicNameLabel(_ nicname: String) {
         nicNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        nicNameLabel.text = "@ekaterina_nov"
+        nicNameLabel.text = nicname //"@ekaterina_nov"
         nicNameLabel.textColor = UIColor(named: "YP Gray")
         nicNameLabel.font = UIFont.systemFont(ofSize: 13)
         
@@ -75,10 +94,10 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func createTextLabel() {
+    private func createTextLabel(_ bio: String) {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        textLabel.text = "Hello, world!"
+        textLabel.text = bio //"Hello, world!"
         textLabel.font = UIFont.systemFont(ofSize: 13)
         textLabel.textColor = .white
         
@@ -105,6 +124,16 @@ final class ProfileViewController: UIViewController {
             exitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
             exitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55.7)
         ])
+    }
+    
+    func createAlertText() -> AlertModel {
+        let alerModel = AlertModel(title: "Ошибка!",
+                                   message: "Не удалось загрузить профиль \n повторите попытку позже",
+                                   buttonText: "Отмена") { [weak self] _ in
+                        //перемещаемся на imageList
+            self?.tabBarController?.selectedIndex = 0
+        }
+        return alerModel
     }
     
     @IBAction private func clickedExitButton(_ sender: UIButton){
