@@ -8,6 +8,11 @@
 import Foundation
 
 final class ProfileService {
+   
+    private(set) var profile: Profile?
+    
+    static let shared = ProfileService()
+        
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, UnsplashError>) -> Void) {
         let url = URL(string: "https://api.unsplash.com/me")!
         var request = URLRequest(url: url)
@@ -24,8 +29,9 @@ final class ProfileService {
                     case 200..<300:
                         do {
                             let resp = try JSONDecoder().decode(ProfileResult.self, from: data)
-                            let profile = self.converterFromProfileResultToProfile(result: resp)
-                            completion(.success(profile))
+                            let profile2 = self.converterFromProfileResultToProfile(result: resp)
+                            self.profile = Profile(username: profile2.username, name: profile2.name, loginName: profile2.loginName, bio: profile2.bio)
+                            completion(.success(profile2))
                         } catch {
                             completion(.failure(.parsingError))
                         }

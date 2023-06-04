@@ -15,7 +15,8 @@ final class ProfileViewController: UIViewController {
     private var nicNameLabel = UILabel()
     private var textLabel = UILabel()
     
-    private var profileService = ProfileService()
+    private var profileService = ProfileService.shared
+    
     private var profileDataStrorage = ProfileDataStorage()
     let getBearerToken = OAuth2TokenStorage().token!
     
@@ -30,7 +31,10 @@ final class ProfileViewController: UIViewController {
         alertDelegate = AlertPresenter()
         alertDelegate?.delegate = self
         
-        createProfile(name: profileDataStrorage.profileName, loginName: profileDataStrorage.profileLoginName, bio: profileDataStrorage.profileBio)
+        let profile = profileService.profile
+        print("profile = ", profile)
+        //updateProfileDetails(profile: profile)
+        //createProfile(name: profileDataStrorage.profileName, loginName: profileDataStrorage.profileLoginName, bio: profileDataStrorage.profileBio)
     }
     
     private func createProfileImage(){
@@ -123,6 +127,10 @@ final class ProfileViewController: UIViewController {
         createNicNameLabel(loginName)
         createTextLabel(bio)
         createExitButton()
+    }
+    
+    func updateProfileDetails(profile: Profile) {
+        createProfile(name: profile.name, loginName: profile.loginName, bio: profile.bio)
     }
     
     func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
