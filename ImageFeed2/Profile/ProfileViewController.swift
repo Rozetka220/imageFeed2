@@ -16,6 +16,7 @@ final class ProfileViewController: UIViewController {
     private var textLabel = UILabel()
     
     private var profileService = ProfileService()
+    private var profileDataStrorage = ProfileDataStorage()
     let getBearerToken = OAuth2TokenStorage().token!
     
     private var alertDelegate: AlertPresenterDelegate?
@@ -29,23 +30,7 @@ final class ProfileViewController: UIViewController {
         alertDelegate = AlertPresenter()
         alertDelegate?.delegate = self
         
-        UIBlockingProgressHUD.show()
-        
-        profileService.fetchProfile(getBearerToken) { result in
-            switch result {
-            case .success(let profile):
-                self.createProfileImage()
-                self.createLabelName(profile.name)
-                self.createNicNameLabel(profile.loginName)
-                self.createTextLabel(profile.bio)
-                self.createExitButton()
-            default:
-                self.alertDelegate?.presentAlert(model: self.createAlertText())
-            }
-        }
-        
-        UIBlockingProgressHUD.dismiss()
-        
+        createProfile(name: profileDataStrorage.profileName, loginName: profileDataStrorage.profileLoginName, bio: profileDataStrorage.profileBio)
     }
     
     private func createProfileImage(){
@@ -126,10 +111,24 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    func createAlertText() -> AlertModel {
-        let alerModel = AlertModel(title: "Ошибка!",
-                                   message: "Не удалось загрузить профиль \n повторите попытку позже",
-                                   buttonText: "Отмена") { [weak self] _ in
+    func createProfile(name: String?, loginName: String?, bio: String?) {
+        guard let name = name, let loginName = loginName, let bio = bio else {
+            assertionFailure("В UserData не сохранились данные профиля. Сохранение происходит в замыкании SplashViewController, метод fetchProfile")
+            alertDelegate?.presentAlert(model: createAlertText(title: "Ошибка!", message: "Не удалось получить данные профиля, повторите попытку позже", buttonText: "Отмена"))
+            return
+        }
+
+        createProfileImage()
+        createLabelName(name)
+        createNicNameLabel(loginName)
+        createTextLabel(bio)
+        createExitButton()
+    }
+    
+    func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
+        let alerModel = AlertModel(title: title, //"Ошибка!",
+                                   message: message, // "Не удалось загрузить профиль \n повторите попытку позже",
+                                   buttonText: buttonText) { [weak self] _ in
                         //перемещаемся на imageList
             self?.tabBarController?.selectedIndex = 0
         }

@@ -11,11 +11,13 @@ final class SplashViewController: UIViewController {
     
     private let oAuth2TokenStorage = OAuth2TokenStorage()
     weak var delegate: AuthViewController?
-    
+    private var profileService = ProfileService()
+    private var profileDataStorage = ProfileDataStorage()
     var alertDelegate: AlertPresenterDelegate? = AlertPresenter()
     
     override func viewDidAppear(_ animated: Bool) {
         if checkToken() {
+            fetchProfile(token: oAuth2TokenStorage.token!)
             performSegue(withIdentifier: "toTabBar", sender: nil)
         } else {
             performSegue(withIdentifier: "goToAuth", sender: nil)
@@ -75,6 +77,7 @@ extension SplashViewController: AuthViewControllerDelegate {
                 switch result {
                 case.success(let token):
                     self.oAuth2TokenStorage.token = token
+                    self.fetchProfile(token: token)
                     UIBlockingProgressHUD.dismiss()
                     self.switchToTabBarController()
                 case.failure(let error):
@@ -83,16 +86,33 @@ extension SplashViewController: AuthViewControllerDelegate {
             }
         }
     }
+    
+    private func fetchProfile(token: String){
+        profileService.fetchProfile(token) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                //Сохраняем данные профиле в UserDefaults
+                self.profileDataStorage.profileName = profile.name
+                self.profileDataStorage.profileLoginName = profile.loginName
+                self.profileDataStorage.profileBio = profile.bio
+            default:
+                assertionFailure("Не удалось загрузить данные профиля с сервера")
+                //впрнц алерт вылезет при попытке открыть вкладку профиля. не совсем правда уверен, на сколько такое решение правильно. В
+                //self.presentedViewController.alertDelegate?.presentAlert(model: self.createAlertText(title: "Ошибка", message: "Не удалось загрузить данные профиля", buttonText: "Отмена"))
+                //self.alertDelegate?.presentAlert(model: self.createAlertText(title: "Ошибка", message: "Не удалось загрузить данные профиля", buttonText: "Отмена"))
+            }
+        }
+    }
 }
 
 
 //попытка сделать через делегат в алертпрезент, но не увенчалась успехом
 extension SplashViewController {
-    func createAlertText() -> AlertModel {
-        let alerModel = AlertModel(title: "Ошибка!",
-                                   message: "Ошибка чтения данных с сервера \n повторите попытку позже",
-                                   buttonText: "Отмена") { [weak self] _ in
-                        //перемещаемся на imageList
+    func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
+        let alerModel = AlertModel(title: title, //"Ошибка!",
+                                   message: message, // "Не удалось загрузить профиль \n повторите попытку позже",
+                                   buttonText: buttonText) { [weak self] _ in
             self?.backToSplashViewController()
         }
         return alerModel

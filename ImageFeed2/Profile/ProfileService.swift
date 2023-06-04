@@ -12,7 +12,7 @@ final class ProfileService {
         let url = URL(string: "https://api.unsplash.com/me")!
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
- 
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {return completion(.failure(.dataError))}
             guard error == nil  else { return completion(.failure(.errorByClient))}
