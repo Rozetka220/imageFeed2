@@ -6,13 +6,15 @@
 //
 
 import Foundation
-
+//MARK: Надо добавить защиту от гонок
 final class ProfileService {
    
+    static let shared = ProfileService()
+    
     private(set) var profile: Profile?
     
-    static let shared = ProfileService()
-        
+    private init(){}
+    
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, UnsplashError>) -> Void) {
         let url = URL(string: "https://api.unsplash.com/me")!
         var request = URLRequest(url: url)

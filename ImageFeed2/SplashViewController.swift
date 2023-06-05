@@ -11,8 +11,8 @@ final class SplashViewController: UIViewController {
     
     private let oAuth2TokenStorage = OAuth2TokenStorage()
     weak var delegate: AuthViewController?
-    private var profileService = ProfileService()
-    private var profileDataStorage = ProfileDataStorage()
+    private var profileService = ProfileService.shared
+    private var profileImageService = ProfileImageService.shared
     var alertDelegate: AlertPresenterDelegate? = AlertPresenter()
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,10 +92,10 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else { return }
             switch result {
             case .success(let profile):
-                //Сохраняем данные профиле в UserDefaults
-                self.profileDataStorage.profileName = profile.name
-                self.profileDataStorage.profileLoginName = profile.loginName
-                self.profileDataStorage.profileBio = profile.bio
+                self.profileImageService.fetchProfileImageURL(username: profile.username) { [weak self] _ in
+                    
+                }
+                print("а че а в смысле тут делать то что")
             default:
                 assertionFailure("Не удалось загрузить данные профиля с сервера")
                 //впрнц алерт вылезет при попытке открыть вкладку профиля. не совсем правда уверен, на сколько такое решение правильно. В

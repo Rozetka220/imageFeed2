@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class ProfileViewController: UIViewController {
     private let leadingConstraintForLeftElements = 16.0
     
@@ -15,13 +16,14 @@ final class ProfileViewController: UIViewController {
     private var nicNameLabel = UILabel()
     private var textLabel = UILabel()
     
-    private var profileService = ProfileService.shared
+    private let profileService = ProfileService.shared
     
-    private var profileDataStrorage = ProfileDataStorage()
+    private var profileImageServiceObserver: NSObjectProtocol?
+    
     let getBearerToken = OAuth2TokenStorage().token!
     
     private var alertDelegate: AlertPresenterDelegate?
-    
+ 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -31,10 +33,21 @@ final class ProfileViewController: UIViewController {
         alertDelegate = AlertPresenter()
         alertDelegate?.delegate = self
         
+        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.DidChangeNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let self = self else { return }
+            self.updateAvatar()
+        })
+        
+        updateAvatar()
+        
         let profile = profileService.profile
         print("profile = ", profile)
-        //updateProfileDetails(profile: profile)
-        //createProfile(name: profileDataStrorage.profileName, loginName: profileDataStrorage.profileLoginName, bio: profileDataStrorage.profileBio)
+        createProfile(name: profile?.name, loginName: profile?.loginName, bio: profile?.bio)
+    }
+    
+    private func updateAvatar() {
+        guard let profileImageURL = ProfileImageService.shared.avatarURL,
+              let url = URL(string: profileImageURL) else { return }
     }
     
     private func createProfileImage(){

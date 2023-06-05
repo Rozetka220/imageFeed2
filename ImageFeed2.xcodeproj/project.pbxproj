@@ -31,7 +31,8 @@
 		CCBD3B332A26549500DACF19 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD3B322A26549500DACF19 /* ProfileService.swift */; };
 		CCBD3B362A2654C600DACF19 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD3B352A2654C600DACF19 /* Profile.swift */; };
 		CCBD3B382A2654DD00DACF19 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD3B372A2654DD00DACF19 /* ProfileResult.swift */; };
-		CCCF89F22A2C8AFF00ADED6B /* ProfileDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF89F12A2C8AFF00ADED6B /* ProfileDataStorage.swift */; };
+		CCCF89F42A2D0EF000ADED6B /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF89F32A2D0EF000ADED6B /* ProfileImageService.swift */; };
+		CCCF89F62A2D0F2200ADED6B /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF89F52A2D0F2200ADED6B /* UserResult.swift */; };
 		CCD6A30C2A29032400E4C3EE /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD6A30B2A29032400E4C3EE /* AlertModel.swift */; };
 		CCD6A30E2A29040300E4C3EE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD6A30D2A29040300E4C3EE /* AlertPresenter.swift */; };
 		CCD6A3102A2904B600E4C3EE /* AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD6A30F2A2904B600E4C3EE /* AlertPresenterDelegate.swift */; };
@@ -63,7 +64,8 @@
 		CCBD3B322A26549500DACF19 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		CCBD3B352A2654C600DACF19 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		CCBD3B372A2654DD00DACF19 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
-		CCCF89F12A2C8AFF00ADED6B /* ProfileDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataStorage.swift; sourceTree = "<group>"; };
+		CCCF89F32A2D0EF000ADED6B /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
+		CCCF89F52A2D0F2200ADED6B /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		CCD6A30B2A29032400E4C3EE /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		CCD6A30D2A29040300E4C3EE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		CCD6A30F2A2904B600E4C3EE /* AlertPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterDelegate.swift; sourceTree = "<group>"; };
@@ -157,7 +159,7 @@
 				CC84D5AB29D20149007317D5 /* ProfileViewController.swift */,
 				CCBD3B342A26549D00DACF19 /* Models */,
 				CCBD3B322A26549500DACF19 /* ProfileService.swift */,
-				CCCF89F12A2C8AFF00ADED6B /* ProfileDataStorage.swift */,
+				CCCF89F32A2D0EF000ADED6B /* ProfileImageService.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -167,6 +169,7 @@
 			children = (
 				CCBD3B352A2654C600DACF19 /* Profile.swift */,
 				CCBD3B372A2654DD00DACF19 /* ProfileResult.swift */,
+				CCCF89F52A2D0F2200ADED6B /* UserResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,7 +276,9 @@
 				CCD6A30C2A29032400E4C3EE /* AlertModel.swift in Sources */,
 				CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */,
 				CC4D466629C9F74000DDBF6E /* AppDelegate.swift in Sources */,
+				CCCF89F62A2D0F2200ADED6B /* UserResult.swift in Sources */,
 				CC3F2A1629F55F880071CC51 /* OAuth2TokenStorage.swift in Sources */,
+				CCCF89F42A2D0EF000ADED6B /* ProfileImageService.swift in Sources */,
 				CC3F2A1429F5576D0071CC51 /* UnsplashError.swift in Sources */,
 				CC5D614029EF172F0034CB8D /* AuthViewController.swift in Sources */,
 				CC3F2A1029F47CE70071CC51 /* UnsplashOAuth2Response.swift in Sources */,
@@ -284,7 +289,6 @@
 				CC5D614429EF21F30034CB8D /* ProtocolWebViewViewControllerDelegate.swift in Sources */,
 				CC5D614229EF17BE0034CB8D /* WebViewViewController.swift in Sources */,
 				CCBD3B362A2654C600DACF19 /* Profile.swift in Sources */,
-				CCCF89F22A2C8AFF00ADED6B /* ProfileDataStorage.swift in Sources */,
 				CC4D466829C9F74000DDBF6E /* SceneDelegate.swift in Sources */,
 				CCBD3B382A2654DD00DACF19 /* ProfileResult.swift in Sources */,
 				CCBD3B302A264EB400DACF19 /* UIBlockingProgressHUD.swift in Sources */,
