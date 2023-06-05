@@ -24,32 +24,16 @@ final class ProfileImageService {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {return completion(.failure(.dataError))}
-            guard error == nil  else { return completion(.failure(.errorByClient))}
-            guard let response = response else { return completion(.failure(.errorRequest))}
-            
-            DispatchQueue.main.async {
-                if let response = response as? HTTPURLResponse {
-                    switch response.statusCode {
-                    case 200..<300:
-                        do {
-                            let resp = try JSONDecoder().decode(ProfileImage.self, from: data)
-                            self.avatarURL = resp.small
-                            completion(.success(resp.small))
-                            NotificationCenter.default.post(name: ProfileImageService.DidChangeNotification, object: self, userInfo: ["URL": self.avatarURL])
-                        } catch {
-                            completion(.failure(.parsingError))
-                        }
-                    default:
-                        completion(.failure(.errorRequest))
-                    }
-                } else {
-                    completion(.failure(.errorRequest))
-                }
+        let session = URLSession.shared
+        let task = session.objectTask(for: request) { [weak self] ( result: Result<UserResult, UnsplashError>) in
+            switch result {
+            case .success(let userResult):
+                self?.avatarURL = userResult.profileImage.small
+                completion(.success(userResult.profileImage.small)) // зачем я это делаю?
+                NotificationCenter.default.post(name: ProfileImageService.DidChangeNotification, object: self, userInfo: ["URL": self?.avatarURL])
+            default:
+                assertionFailure("При сетевом запросе на получение аватарки произошла ошибка")
             }
         }.resume()
     }
-    
-    
 }
