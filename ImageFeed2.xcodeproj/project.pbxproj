@@ -33,6 +33,7 @@
 		CCBD3B382A2654DD00DACF19 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD3B372A2654DD00DACF19 /* ProfileResult.swift */; };
 		CCCF89F42A2D0EF000ADED6B /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF89F32A2D0EF000ADED6B /* ProfileImageService.swift */; };
 		CCCF89F62A2D0F2200ADED6B /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF89F52A2D0F2200ADED6B /* UserResult.swift */; };
+		CCCF89F92A2E61AC00ADED6B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF89F82A2E61AC00ADED6B /* Extension.swift */; };
 		CCD6A30C2A29032400E4C3EE /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD6A30B2A29032400E4C3EE /* AlertModel.swift */; };
 		CCD6A30E2A29040300E4C3EE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD6A30D2A29040300E4C3EE /* AlertPresenter.swift */; };
 		CCD6A3102A2904B600E4C3EE /* AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD6A30F2A2904B600E4C3EE /* AlertPresenterDelegate.swift */; };
@@ -66,6 +67,7 @@
 		CCBD3B372A2654DD00DACF19 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 		CCCF89F32A2D0EF000ADED6B /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		CCCF89F52A2D0F2200ADED6B /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
+		CCCF89F82A2E61AC00ADED6B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CCD6A30B2A29032400E4C3EE /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		CCD6A30D2A29040300E4C3EE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		CCD6A30F2A2904B600E4C3EE /* AlertPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		CC4D466429C9F74000DDBF6E /* ImageFeed2 */ = {
 			isa = PBXGroup;
 			children = (
+				CCCF89F72A2E618100ADED6B /* Extension */,
 				CCD6A30A2A2902FB00E4C3EE /* Common presenters */,
 				CCD6A3092A2902EC00E4C3EE /* Common models */,
 				CCBD3B312A26548000DACF19 /* Profile */,
@@ -172,6 +175,14 @@
 				CCCF89F52A2D0F2200ADED6B /* UserResult.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CCCF89F72A2E618100ADED6B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF89F82A2E61AC00ADED6B /* Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		CCD6A3092A2902EC00E4C3EE /* Common models */ = {
@@ -273,6 +284,7 @@
 				CC4D467A29CA074100DDBF6E /* ImagesListCell.swift in Sources */,
 				CC3F2A1B29FAE82B0071CC51 /* SplashViewController.swift in Sources */,
 				CCB868D829F07F4000F31DA1 /* OAuth2Service.swift in Sources */,
+				CCCF89F92A2E61AC00ADED6B /* Extension.swift in Sources */,
 				CCD6A30C2A29032400E4C3EE /* AlertModel.swift in Sources */,
 				CC84D5AC29D20149007317D5 /* ProfileViewController.swift in Sources */,
 				CC4D466629C9F74000DDBF6E /* AppDelegate.swift in Sources */,
