@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//MARK: Дженерик для сетевых запросов: авторизация, данные профиля пользователя, аватара профиля пользователя
 extension URLSession {
     func objectTask<T: Decodable>(for request: URLRequest, completition: @escaping (Result<T, UnsplashError>) -> Void) -> URLSessionTask {
         let task = dataTask(with: request, completionHandler: { data, response, error in
