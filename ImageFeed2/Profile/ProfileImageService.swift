@@ -33,6 +33,8 @@ final class ProfileImageService {
                 NotificationCenter.default.post(name: ProfileImageService.DidChangeNotification, object: self, userInfo: ["URL": self?.avatarURL])
             default:
                 //по идее ошибка возвращается из дженерика, затем приходит сюда, и отсюда надо выкинуть её в фетс и вынести в splash где и будет алерт
+                completion(.failure(.errorRequest))
+                
                 assertionFailure("При сетевом запросе на получение аватарки произошла ошибка")
             }
         }.resume()

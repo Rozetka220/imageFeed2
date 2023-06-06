@@ -17,6 +17,7 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if checkToken() {
+            print("splash")
             fetchProfile(token: oAuth2TokenStorage.token!)
             performSegue(withIdentifier: "toTabBar", sender: nil)
         } else {
@@ -52,10 +53,11 @@ final class SplashViewController: UIViewController {
 
 extension SplashViewController: AuthViewControllerDelegate {
     
-    private func presentAlert() -> UIAlertController {
+    private func presentAlert( completion: @escaping () -> ()) -> UIAlertController {
         let alert = UIAlertController(title: "Внимание!", message: "Ошибка чтения ответа сервера, повторите попытку позже", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
-            self.backToSplashViewController()
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { [weak self] _ in
+            //self.backToSplashViewController()
+            completion()
         }))
         return alert
     }
@@ -81,7 +83,9 @@ extension SplashViewController: AuthViewControllerDelegate {
                     UIBlockingProgressHUD.dismiss()
                     self.switchToTabBarController()
                 case.failure(let error):
-                    vc.presentedViewController?.present(self.presentAlert(), animated: true)
+                    vc.presentedViewController?.present(self.presentAlert(completion: {
+                        self.backToSplashViewController()
+                    }), animated: true)
                 }
             }
         }
@@ -90,17 +94,21 @@ extension SplashViewController: AuthViewControllerDelegate {
     private func fetchProfile(token: String){
         profileService.fetchProfile(token) { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let profile):
-                self.profileImageService.fetchProfileImageURL(username: profile.username) { [weak self] _ in
-                    
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let profile):
+                    self.profileImageService.fetchProfileImageURL(username: profile.username) { [weak self] result in
+                        switch result {
+                        default:
+                            assertionFailure("наверное тут должна быть заглушка аватарки")
+                        }
+                    }
+                    print("а че а в смысле тут делать то что")
+                default:
+                    print("default")
+                    self.presentedViewController?.present(self.presentAlert(completion: {
+                    }), animated: true)
                 }
-                print("а че а в смысле тут делать то что")
-            default:
-                assertionFailure("Не удалось загрузить данные профиля с сервера")
-                //впрнц алерт вылезет при попытке открыть вкладку профиля. не совсем правда уверен, на сколько такое решение правильно. В
-                //self.presentedViewController.alertDelegate?.presentAlert(model: self.createAlertText(title: "Ошибка", message: "Не удалось загрузить данные профиля", buttonText: "Отмена"))
-                //self.alertDelegate?.presentAlert(model: self.createAlertText(title: "Ошибка", message: "Не удалось загрузить данные профиля", buttonText: "Отмена"))
             }
         }
     }

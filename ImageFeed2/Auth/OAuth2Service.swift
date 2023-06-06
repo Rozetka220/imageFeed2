@@ -9,7 +9,7 @@ final class OAuth2Service {
         let url = createURL(code: code)
         //создаем  http запрос (url-request)
         let request = createHTTPRequest(url: url)
-        
+        let session = URLSession.shared
         //гонка потоков
 //        assert(Thread.isMainThread)
 //        if task != nil {
@@ -24,55 +24,20 @@ final class OAuth2Service {
 //            }
 //        }
 //        lastCode = code
-        
-        let session = URLSession.shared
-        
-        let task = session.objectTask(for: request) { [weak self] (result: Result<UnsplashOAuth2Response, UnsplashError>) in
+        //xcode рекомендует дописать тут void, не совсем понимаю зачем
+        let task: Void = session.objectTask(for: request) { [weak self] (result: Result<UnsplashOAuth2Response, UnsplashError>) in
             switch result {
             case .success(let result):
                 completion(.success(result.accessToken))
+                //self?.task = nil
             default:
-                assertionFailure("jjjj")
+                //self?.lastCode = nil
+                completion(.failure(.errorRequest))
+                assertionFailure("Не удалось загрузить токен в OAuth2Service посредством использования generic")
             }
         }.resume()
-        //создаем задачу (url-session)
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            //Считаю, что использование assertionFailure является возможным, так как крашит приложение только в дебаге, что позволит легче находить ошибки. Для релизной версии есть .failure
-//            guard let data = data else { assertionFailure("No Data"); completion(.failure(.dataError)); return}
-//            //если ошибка будет на стороне клиента, а не сервера. В противном случае ошибка будет обработана в Dispatch
-//            guard error == nil else {assertionFailure("Error from request"); completion(.failure(.errorByClient)); return}
-//            DispatchQueue.main.async {
-//                //распарсинг ответа
-//                let decoder = JSONDecoder()
-//                decoder.keyDecodingStrategy = .convertFromSnakeCase
-//                if let response = response as? HTTPURLResponse {
-//                    switch response.statusCode {
-//                    case 200..<300:
-//                        do {
-//                            let resp = try decoder.decode(UnsplashOAuth2Response.self, from: data)
-//                            completion(.success(resp.accessToken))
-//                            self.task = nil
-//                            if error != nil {
-//                                self.lastCode = nil
-//                            }
-//                        } catch {
-//                            completion(.failure(.parsingError))
-//                        }
-//                    default:
-//                        do {
-//                            let resp = try decoder.decode(UnsplashOAuth2ResponseError.self, from: data)
-//                            completion(.failure(.errorRequest))
-//                        } catch {
-//                            completion(.failure(.parsingError))
-//                        }
-//                    }
-//                } else {
-//                    return
-//                }
-//            }
-//        }
-//        self.task = task
-//        task.resume()
+        //почему то теперь таск - это Void и просто так приравнять нельзя. не оченm понимаю, почему в предыдущем варианте он был не void
+        //self.task =
     }
     
     func createURL(code: String) -> URL{

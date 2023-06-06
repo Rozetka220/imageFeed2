@@ -27,6 +27,19 @@ final class ProfileViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    //при попытке открытия в таббаре профиля, в случае отсуствия данных профиля выкидывает алерт
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if profileService.profile == nil {
+            showAlert()
+        } else {
+            if let profile = profileService.profile {
+                updateProfileDetails(profile: profile)
+            } else {
+                return
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +143,7 @@ final class ProfileViewController: UIViewController {
     
     func createProfile(name: String?, loginName: String?, bio: String?) {
         guard let name = name, let loginName = loginName, let bio = bio else {
-            assertionFailure("В UserData не сохранились данные профиля. Сохранение происходит в замыкании SplashViewController, метод fetchProfile")
-            alertDelegate?.presentAlert(model: createAlertText(title: "Ошибка!", message: "Не удалось получить данные профиля, повторите попытку позже", buttonText: "Отмена"))
+            showAlert()
             return
         }
 
@@ -142,11 +154,11 @@ final class ProfileViewController: UIViewController {
         createExitButton()
     }
     
-    func updateProfileDetails(profile: Profile) {
+    private func updateProfileDetails(profile: Profile) {
         createProfile(name: profile.name, loginName: profile.loginName, bio: profile.bio)
     }
     
-    func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
+    private func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
         let alerModel = AlertModel(title: title, //"Ошибка!",
                                    message: message, // "Не удалось загрузить профиль \n повторите попытку позже",
                                    buttonText: buttonText) { [weak self] _ in
@@ -154,6 +166,10 @@ final class ProfileViewController: UIViewController {
             self?.tabBarController?.selectedIndex = 0
         }
         return alerModel
+    }
+    
+    private func showAlert() {
+        alertDelegate?.presentAlert(model: createAlertText(title: "Ошибка!", message: "Не удалось получить данные профиля, повторите попытку позже", buttonText: "Отмена"))
     }
     
     @IBAction private func clickedExitButton(_ sender: UIButton){
