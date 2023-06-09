@@ -20,21 +20,21 @@ final class ProfileImageService {
     
     
     func fetchProfileImageURL(username: String, _ completion: @escaping (Result<String, UnsplashError>) -> Void) {
-        let url = URL(string: "https://api.unsplash.com/me/users/" + username)!
+        let url = URL(string: "https://api.unsplash.com/users/" + username)!
         var request = URLRequest(url: url)
+        guard let token = token else {return}
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
         let session = URLSession.shared
         let task = session.objectTask(for: request) { [weak self] ( result: Result<UserResult, UnsplashError>) in
             switch result {
             case .success(let userResult):
                 self?.avatarURL = userResult.profileImage.small
-                completion(.success(userResult.profileImage.small)) // зачем я это делаю?
+                print("avatarURL = ", self?.avatarURL)
                 NotificationCenter.default.post(name: ProfileImageService.DidChangeNotification, object: self, userInfo: ["URL": self?.avatarURL])
+                completion(.success(userResult.profileImage.small)) // зачем я это делаю?
             default:
                 //по идее ошибка возвращается из дженерика, затем приходит сюда, и отсюда надо выкинуть её в фетс и вынести в splash где и будет алерт
                 completion(.failure(.errorRequest))
-                
                 assertionFailure("При сетевом запросе на получение аватарки произошла ошибка")
             }
         }.resume()

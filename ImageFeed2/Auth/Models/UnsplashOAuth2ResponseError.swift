@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Структура используется для обработки ошибок от сервера Unsplash
-struct UnsplashOAuth2ResponseError: Decodable {
+struct UnsplashOAuth2ResponseError: Decodable, Error {
     let error: String
     let errorDescription: String
     

@@ -25,7 +25,16 @@ extension URLSession {
                             completition(.failure(.parsingError))
                         }
                     default:
-                        completition(.failure(.errorRequest))
+                        do {
+                            print(response.statusCode)
+                            let decodedErrorsResponse = try JSONDecoder().decode(ErrorMessages.self, from: data)
+                            for i in decodedErrorsResponse.errors {
+                                assertionFailure(i)
+                            }
+                            completition(.failure(.errorRequest))
+                        } catch {
+                            completition(.failure(.errorRequest))
+                        }
                     }
                 } else {
                     completition(.failure(.errorRequest))

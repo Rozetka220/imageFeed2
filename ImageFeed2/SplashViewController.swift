@@ -99,13 +99,13 @@ extension SplashViewController: AuthViewControllerDelegate {
                 case .success(let profile):
                     self.profileImageService.fetchProfileImageURL(username: profile.username) { [weak self] result in
                         switch result {
+                        case .success(let avatarURL):
+                            print("Заглушка")
                         default:
                             assertionFailure("наверное тут должна быть заглушка аватарки")
                         }
                     }
-                    print("а че а в смысле тут делать то что")
                 default:
-                    print("default")
                     self.presentedViewController?.present(self.presentAlert(completion: {
                     }), animated: true)
                 }

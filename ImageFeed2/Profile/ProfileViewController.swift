@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     private let leadingConstraintForLeftElements = 16.0
@@ -61,12 +61,16 @@ final class ProfileViewController: UIViewController {
     private func updateAvatar() {
         guard let profileImageURL = ProfileImageService.shared.avatarURL,
               let url = URL(string: profileImageURL) else { return }
+        imageViewAvatar.kf.setImage(with: url)
     }
     
     private func createProfileImage(){
-        let image = UIImage(named: "userPhoto")
-        imageViewAvatar = UIImageView(image: image)
+        guard let profileImageURL = ProfileImageService.shared.avatarURL,
+              let url = URL(string: profileImageURL) else { return }
         
+        let processor = RoundCornerImageProcessor(cornerRadius: 20)
+        imageViewAvatar.kf.setImage(with: url, placeholder: UIImage(named: "placeholderAvatarSmall"), options: [.processor(processor)])
+
         imageViewAvatar.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(imageViewAvatar)

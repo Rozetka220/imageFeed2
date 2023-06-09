@@ -27,6 +27,7 @@ final class ProfileService {
             switch result {
             case(.success(let succesResult)):
                 self?.profile = self?.converterFromProfileResultToProfile(result: succesResult)
+                completion(.success((self?.profile)!))
             default:
                 assertionFailure("При запросе данных профиля произошла ошибка")
                 completion(.failure(.parsingError))
