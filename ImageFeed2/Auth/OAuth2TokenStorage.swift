@@ -6,13 +6,35 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 final class OAuth2TokenStorage {
-    var token: String?  {
+//    var token: String?  {
+//        get {
+//           UserDefaults.standard.string(forKey: "bearerToken")
+//        } set {
+//            UserDefaults.standard.set(newValue, forKey: "bearerToken")
+//        }
+//    }
+
+    
+    var token: String? {
         get {
-           UserDefaults.standard.string(forKey: "bearerToken")
+            if let token = KeychainWrapper.standard.string(forKey: "bearerToken") {
+                return token
+            } else {
+                assertionFailure("не удалось считать токен из хранилища")
+                return nil
+            }
         } set {
-            UserDefaults.standard.set(newValue, forKey: "bearerToken")
+            if let newValue = newValue {
+                KeychainWrapper.standard.set(newValue, forKey: "bearerToken")
+            } else {
+                assertionFailure("Вместо токена прилетел nil")
+                return
+            }
         }
     }
+    
+    
 }

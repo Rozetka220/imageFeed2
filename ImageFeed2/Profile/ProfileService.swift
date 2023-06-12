@@ -8,6 +8,8 @@
 import Foundation
 //MARK: Надо добавить защиту от гонок
 final class ProfileService {
+    private var task: URLSessionTask?
+    private var lastToken: String?
    
     static let shared = ProfileService()
     
@@ -15,7 +17,23 @@ final class ProfileService {
     
     private init(){}
     
+    
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, UnsplashError>) -> Void) {
+        assert(Thread.isMainThread)
+        
+        if task != nil {
+            if lastToken != token {
+                task?.cancel()
+            } else {
+                return
+            }
+        } else {
+            if lastToken == token {
+                return
+            }
+        }
+        lastToken = token
+        
         let url = URL(string: "https://api.unsplash.com/me")!
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -28,11 +46,15 @@ final class ProfileService {
             case(.success(let succesResult)):
                 self?.profile = self?.converterFromProfileResultToProfile(result: succesResult)
                 completion(.success((self?.profile)!))
+                self?.task = nil
             default:
+                self?.lastToken = nil
                 assertionFailure("При запросе данных профиля произошла ошибка")
                 completion(.failure(.parsingError))
             }
-        }.resume()
+        }
+        self.task = task
+        task.resume()
     }
     
     private func converterFromProfileResultToProfile(result: ProfileResult) -> Profile{

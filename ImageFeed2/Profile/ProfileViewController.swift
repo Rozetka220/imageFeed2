@@ -30,11 +30,13 @@ final class ProfileViewController: UIViewController {
     //при попытке открытия в таббаре профиля, в случае отсуствия данных профиля выкидывает алерт
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear")
         if profileService.profile == nil {
             showAlert()
         } else {
             if let profile = profileService.profile {
                 updateProfileDetails(profile: profile)
+                //updateAvatar()
             } else {
                 return
             }
@@ -46,31 +48,37 @@ final class ProfileViewController: UIViewController {
         alertDelegate = AlertPresenter()
         alertDelegate?.delegate = self
         
-        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.DidChangeNotification, object: nil, queue: .main, using: { [weak self] _ in
-            guard let self = self else { return }
-            self.updateAvatar()
-        })
-        
-        updateAvatar()
-        
         let profile = profileService.profile
         print("profile = ", profile)
         createProfile(name: profile?.name, loginName: profile?.loginName, bio: profile?.bio)
+        
+        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.DidChangeNotification, object: nil, queue: .main, using: { [weak self] _ in
+            print("observer")
+            guard let self = self else { return }
+            let profile = self.profileService.profile
+            print("updateAVa = ", profile)
+            self.updateAvatar()
+        })
+        updateAvatar()
+       
     }
     
     private func updateAvatar() {
         guard let profileImageURL = ProfileImageService.shared.avatarURL,
               let url = URL(string: profileImageURL) else { return }
-        imageViewAvatar.kf.setImage(with: url)
+        let processor = RoundCornerImageProcessor(cornerRadius: 20)
+        imageViewAvatar.kf.setImage(with: url, placeholder: UIImage(named: "placeholderAvatarSmall"), options: [.processor(processor)])
+        print("updateAvatar")
     }
     
     private func createProfileImage(){
-        guard let profileImageURL = ProfileImageService.shared.avatarURL,
-              let url = URL(string: profileImageURL) else { return }
+        imageViewAvatar.backgroundColor = .clear
+        if ProfileImageService.shared.avatarURL != nil {
+            updateAvatar()
+        } else {
+            imageViewAvatar.image = UIImage(named: "placeholderAvatarSmall")
+        }
         
-        let processor = RoundCornerImageProcessor(cornerRadius: 20)
-        imageViewAvatar.kf.setImage(with: url, placeholder: UIImage(named: "placeholderAvatarSmall"), options: [.processor(processor)])
-
         imageViewAvatar.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(imageViewAvatar)
@@ -98,10 +106,10 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func createNicNameLabel(_ nicname: String) {
+    private func createNicNameLabel(_ nickname: String) {
         nicNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        nicNameLabel.text = nicname //"@ekaterina_nov"
+        nicNameLabel.text = nickname //"@ekaterina_nov"
         nicNameLabel.textColor = UIColor(named: "YP Gray")
         nicNameLabel.font = UIFont.systemFont(ofSize: 13)
         

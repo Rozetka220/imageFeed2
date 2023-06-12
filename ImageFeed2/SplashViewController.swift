@@ -15,12 +15,16 @@ final class SplashViewController: UIViewController {
     private var profileImageService = ProfileImageService.shared
     var alertDelegate: AlertPresenterDelegate? = AlertPresenter()
     
+    //let mutex = NSLock()
+    
     override func viewDidAppear(_ animated: Bool) {
+        print("Splash хочется показаться debug")
         if checkToken() {
-            print("splash")
+            print("токен есть debug")
             fetchProfile(token: oAuth2TokenStorage.token!)
             performSegue(withIdentifier: "toTabBar", sender: nil)
         } else {
+            print("токена нет debug")
             performSegue(withIdentifier: "goToAuth", sender: nil)
         }
     }
@@ -31,6 +35,7 @@ final class SplashViewController: UIViewController {
     }
     
     private func checkToken() -> Bool{
+        print("token = ", oAuth2TokenStorage.token)
         return oAuth2TokenStorage.token != nil
     }
     
@@ -73,12 +78,14 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         UIBlockingProgressHUD.show()
+        print("Получение токена debug")
         vc.oAuth2Service.fetchAuthToken(code: code) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case.success(let token):
                     self.oAuth2TokenStorage.token = token
+                    print("Токен получен успешно debug: ", token)
                     self.fetchProfile(token: token)
                     UIBlockingProgressHUD.dismiss()
                     self.switchToTabBarController()
@@ -92,15 +99,19 @@ extension SplashViewController: AuthViewControllerDelegate {
     }
     
     private func fetchProfile(token: String){
+        print("Пошел запрос данных профиля debug")
         profileService.fetchProfile(token) { [weak self] result in
+            print("Данные профиля получены, идет проверка self debug, result = ", result)
             guard let self = self else { return }
+            print("self not nil debug")
             DispatchQueue.main.async {
                 switch result {
                 case .success(let profile):
+                    print("Начался запрос аватарки debug")
                     self.profileImageService.fetchProfileImageURL(username: profile.username) { [weak self] result in
                         switch result {
                         case .success(let avatarURL):
-                            print("Заглушка")
+                            print("Был получен avatarURL")
                         default:
                             assertionFailure("наверное тут должна быть заглушка аватарки")
                         }
