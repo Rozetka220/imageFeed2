@@ -23,13 +23,12 @@ final class OAuth2TokenStorage {
             if let token = KeychainWrapper.standard.string(forKey: "bearerToken") {
                 return token
             } else {
-                assertionFailure("не удалось считать токен из хранилища")
                 return nil
             }
         } set {
-            if let newValue = newValue {
-                KeychainWrapper.standard.set(newValue, forKey: "bearerToken")
-            } else {
+            let token = newValue
+            let isSuccess = KeychainWrapper.standard.set(token!, forKey: "bearerToken")
+            guard isSuccess else {
                 assertionFailure("Вместо токена прилетел nil")
                 return
             }
