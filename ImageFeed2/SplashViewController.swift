@@ -15,37 +15,55 @@ final class SplashViewController: UIViewController {
     private var profileImageService = ProfileImageService.shared
     var alertDelegate: AlertPresenterDelegate? = AlertPresenter()
     
-    //let mutex = NSLock()
+    private var logoImageView: UIImageView?
     
     override func viewDidAppear(_ animated: Bool) {
         print("Splash хочется показаться debug")
         if checkToken() {
             print("токен есть debug")
             fetchProfile(token: oAuth2TokenStorage.token!)
-            performSegue(withIdentifier: "toTabBar", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarID")
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: true)
         } else {
             print("токена нет debug")
-            performSegue(withIdentifier: "goToAuth", sender: nil)
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
+            viewController.delegate = self
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: true)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alertDelegate?.delegate = self
+        createSplashScreenView()
+    }
+    
+    private func createSplashScreenView(){
+        createLogo()
+    }
+    
+    private func createLogo(){
+        logoImageView = UIImageView()
+        guard let logoImageView = logoImageView else { assertionFailure("не удалось загрузить логотип"); return}
+        logoImageView.image = UIImage(named: "logoUnsplash")
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(logoImageView)
+        
+        NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func checkToken() -> Bool{
-        print("token = ", oAuth2TokenStorage.token)
         return oAuth2TokenStorage.token != nil
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let navigationController = segue.destination as? UINavigationController,
-           let viewController = navigationController.viewControllers[0] as? AuthViewController {
-            viewController.delegate = self
-        }
-    }
-    
+
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
         

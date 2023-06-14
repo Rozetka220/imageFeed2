@@ -60,13 +60,12 @@ final class ProfileViewController: UIViewController {
             self.updateAvatar()
         })
         updateAvatar()
-       
     }
     
     private func updateAvatar() {
         guard let profileImageURL = ProfileImageService.shared.avatarURL,
               let url = URL(string: profileImageURL) else { return }
-        let processor = RoundCornerImageProcessor(cornerRadius: 20)
+        let processor = RoundCornerImageProcessor(cornerRadius: 35)
         imageViewAvatar.kf.setImage(with: url, placeholder: UIImage(named: "placeholderAvatarSmall"), options: [.processor(processor)])
         print("updateAvatar")
     }
@@ -78,7 +77,8 @@ final class ProfileViewController: UIViewController {
         } else {
             imageViewAvatar.image = UIImage(named: "placeholderAvatarSmall")
         }
-        
+        imageViewAvatar.layer.cornerRadius = 35
+        imageViewAvatar.layer.masksToBounds = true
         imageViewAvatar.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(imageViewAvatar)

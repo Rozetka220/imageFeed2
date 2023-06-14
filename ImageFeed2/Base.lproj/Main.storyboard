@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hjO-GP-Z5u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -172,25 +172,6 @@
             </objects>
             <point key="canvasLocation" x="945.80152671755718" y="815.49295774647896"/>
         </scene>
-        <!--Splash View Controller-->
-        <scene sceneID="AkM-Yf-HNo">
-            <objects>
-                <viewController storyboardIdentifier="splashViewControllerID" id="hjO-GP-Z5u" customClass="SplashViewController" customModule="ImageFeed2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kcq-E1-bam">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Wku-Qf-2MQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <connections>
-                        <segue destination="WU0-Kb-RcP" kind="presentation" identifier="toTabBar" modalPresentationStyle="fullScreen" id="m1Y-3T-16v"/>
-                        <segue destination="O9l-6f-h5F" kind="presentation" identifier="goToAuth" modalPresentationStyle="fullScreen" id="NQo-e2-Dgf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdb-m4-0Io" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1253" y="-1469"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="30Z-om-pmP">
             <objects>
@@ -213,7 +194,7 @@
         <!--Auth View Controller-->
         <scene sceneID="Tij-o9-Xx9">
             <objects>
-                <viewController id="eFK-ns-Agv" customClass="AuthViewController" customModule="ImageFeed2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" id="eFK-ns-Agv" customClass="AuthViewController" customModule="ImageFeed2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dbQ-e5-VRv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
