@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC0D777829D838B80095F2F9 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D777729D838B80095F2F9 /* SingleImageViewController.swift */; };
+		CC102BCD2A386CB500B04ED6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC102BCC2A386CB500B04ED6 /* TabBarController.swift */; };
 		CC3F2A1029F47CE70071CC51 /* UnsplashOAuth2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3F2A0F29F47CE70071CC51 /* UnsplashOAuth2Response.swift */; };
 		CC3F2A1229F480220071CC51 /* UnsplashOAuth2ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3F2A1129F480220071CC51 /* UnsplashOAuth2ResponseError.swift */; };
 		CC3F2A1429F5576D0071CC51 /* UnsplashError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3F2A1329F5576D0071CC51 /* UnsplashError.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		CC0D777729D838B80095F2F9 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		CC102BCC2A386CB500B04ED6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CC3F2A0F29F47CE70071CC51 /* UnsplashOAuth2Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashOAuth2Response.swift; sourceTree = "<group>"; };
 		CC3F2A1129F480220071CC51 /* UnsplashOAuth2ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashOAuth2ResponseError.swift; sourceTree = "<group>"; };
 		CC3F2A1329F5576D0071CC51 /* UnsplashError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashError.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				CC4D466E29C9F74200DDBF6E /* Assets.xcassets */,
 				CC4D467029C9F74200DDBF6E /* LaunchScreen.storyboard */,
 				CC4D467329C9F74200DDBF6E /* Info.plist */,
+				CC102BCC2A386CB500B04ED6 /* TabBarController.swift */,
 			);
 			path = ImageFeed2;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				CCBD3B362A2654C600DACF19 /* Profile.swift in Sources */,
 				CC4D466829C9F74000DDBF6E /* SceneDelegate.swift in Sources */,
 				CCBD3B382A2654DD00DACF19 /* ProfileResult.swift in Sources */,
+				CC102BCD2A386CB500B04ED6 /* TabBarController.swift in Sources */,
 				CCBD3B302A264EB400DACF19 /* UIBlockingProgressHUD.swift in Sources */,
 				CCD6A3102A2904B600E4C3EE /* AlertPresenterDelegate.swift in Sources */,
 			);
