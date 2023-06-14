@@ -40,7 +40,6 @@ final class ProfileService {
         
         let session = URLSession.shared
         
-        //тут как будто происходить повторная проверка на те же ошибки, что и ранне. По идее все ошибки должны сотаться в generic и в splash можно передовать просто Profile без error?
         let task = session.objectTask(for: request) { [weak self] (result: Result<ProfileResult, UnsplashError>) in
             switch result {
             case(.success(let succesResult)):

@@ -31,13 +31,11 @@ final class ProfileViewController: UIViewController {
     //при попытке открытия в таббаре профиля, в случае отсуствия данных профиля выкидывает алерт
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear")
         if profileService.profile == nil {
             showAlert()
         } else {
             if let profile = profileService.profile {
                 updateProfileDetails(profile: profile)
-                //updateAvatar()
             } else {
                 return
             }
@@ -125,7 +123,7 @@ final class ProfileViewController: UIViewController {
     private func createTextLabel(_ bio: String) {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        textLabel.text = bio //"Hello, world!"
+        textLabel.text = bio
         textLabel.font = UIFont.systemFont(ofSize: 13)
         textLabel.textColor = .white
         
@@ -172,8 +170,8 @@ final class ProfileViewController: UIViewController {
     }
     
     private func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
-        let alerModel = AlertModel(title: title, //"Ошибка!",
-                                   message: message, // "Не удалось загрузить профиль \n повторите попытку позже",
+        let alerModel = AlertModel(title: title,
+                                   message: message,
                                    buttonText: buttonText) { [weak self] _ in
                         //перемещаемся на imageList
             self?.tabBarController?.selectedIndex = 0
@@ -187,6 +185,5 @@ final class ProfileViewController: UIViewController {
     
     @IBAction private func clickedExitButton(_ sender: UIButton){
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "bearerToken")
-        print("кнопка выхода нажалась")
     }
 }
