@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SwiftKeychainWrapper
 
 final class ProfileViewController: UIViewController {
     private let leadingConstraintForLeftElements = 16.0
@@ -185,6 +186,7 @@ final class ProfileViewController: UIViewController {
     }
     
     @IBAction private func clickedExitButton(_ sender: UIButton){
-        
+        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "bearerToken")
+        print("кнопка выхода нажалась")
     }
 }
