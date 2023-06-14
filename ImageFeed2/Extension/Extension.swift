@@ -20,14 +20,12 @@ extension URLSession {
                     case 200..<300:
                         do {
                             let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                            print("decodedResponse: ", decodedResponse)
                             completition(.success(decodedResponse))
                         } catch {
                             completition(.failure(.parsingError))
                         }
                     default:
                         do {
-                            print(response.statusCode)
                             let decodedErrorsResponse = try JSONDecoder().decode(ErrorMessages.self, from: data)
                             for i in decodedErrorsResponse.errors {
                                 assertionFailure(i)

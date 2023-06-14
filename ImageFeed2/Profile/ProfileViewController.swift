@@ -48,14 +48,11 @@ final class ProfileViewController: UIViewController {
         alertDelegate?.delegate = self
         
         let profile = profileService.profile
-        print("profile = ", profile)
         createProfile(name: profile?.name, loginName: profile?.loginName, bio: profile?.bio)
         
         profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.DidChangeNotification, object: nil, queue: .main, using: { [weak self] _ in
-            print("observer")
             guard let self = self else { return }
             let profile = self.profileService.profile
-            print("updateAVa = ", profile)
             self.updateAvatar()
         })
         updateAvatar()
@@ -66,7 +63,6 @@ final class ProfileViewController: UIViewController {
               let url = URL(string: profileImageURL) else { return }
         let processor = RoundCornerImageProcessor(cornerRadius: 35)
         imageViewAvatar.kf.setImage(with: url, placeholder: UIImage(named: "placeholderAvatarSmall"), options: [.processor(processor)])
-        print("updateAvatar")
     }
     
     private func createProfileImage(){

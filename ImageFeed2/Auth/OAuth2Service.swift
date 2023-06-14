@@ -55,7 +55,6 @@ final class OAuth2Service {
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
-        print("urlComponents = ", urlComponents)
         return urlComponents.url!
     }
     func createHTTPRequest(url: URL) -> URLRequest{
