@@ -46,10 +46,14 @@ final class ProfileService {
                 self?.profile = self?.converterFromProfileResultToProfile(result: succesResult)
                 completion(.success((self?.profile)!))
                 self?.task = nil
-            default:
+            case(.failure(.parsingError)):
                 self?.lastToken = nil
                 completion(.failure(.parsingError))
-                assertionFailure("При запросе данных профиля произошла ошибка")
+                assertionFailure("Не удалось запарсить профиль")
+            default:
+                self?.lastToken = nil
+                completion(.failure(.errorRequest))
+                assertionFailure("При запросе данных профиля произошла ошибка. Не удалось корректно выполнить сетевой запрос")
             }
         }
         self.task = task
