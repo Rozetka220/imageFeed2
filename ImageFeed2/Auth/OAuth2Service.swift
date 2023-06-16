@@ -27,7 +27,7 @@ final class OAuth2Service {
             }
         }
         lastCode = code
-        //xcode рекомендует дописать тут void, не совсем понимаю зачем (не понятным образом это решилось)
+
         let task = session.objectTask(for: request) { [weak self] (result: Result<UnsplashOAuth2Response, UnsplashError>) in
             switch result {
             case .success(let result):
@@ -36,10 +36,9 @@ final class OAuth2Service {
             default:
                 self?.lastCode = nil
                 completion(.failure(.errorRequest))
-                assertionFailure("Не удалось загрузить токен в OAuth2Service посредством использования generic")
+                //assertionFailure("Не удалось загрузить токен в OAuth2Service посредством использования generic")
             }
         }
-        //почему то теперь таск - это Void и просто так приравнять нельзя. не оченm понимаю, почему в предыдущем варианте он был не void (непонятным образом решилось)
         self.task = task
         task.resume()
         

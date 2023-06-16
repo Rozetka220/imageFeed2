@@ -48,8 +48,8 @@ final class ProfileService {
                 self?.task = nil
             default:
                 self?.lastToken = nil
-                assertionFailure("При запросе данных профиля произошла ошибка")
                 completion(.failure(.parsingError))
+                assertionFailure("При запросе данных профиля произошла ошибка")
             }
         }
         self.task = task
@@ -57,10 +57,14 @@ final class ProfileService {
     }
     
     private func converterFromProfileResultToProfile(result: ProfileResult) -> Profile{
-        if let bio = result.bio {
-            return Profile(username: result.username, name: result.firstName + " " + result.lastName, loginName: "@" + result.username, bio: bio)
+        if let bio = result.bio, let lastName = result.lastName {
+            return Profile(username: result.username, name: result.firstName + " " + lastName, loginName: "@" + result.username, bio: bio)
+        } else if let lastName = result.lastName {
+            return Profile(username: result.username, name: result.firstName + " " + lastName, loginName: "@" + result.username, bio: "")
+        } else if let bio = result.bio {
+            return Profile(username: result.username, name: result.firstName + " ", loginName: "@" + result.username, bio: bio)
         } else {
-            return Profile(username: result.username, name: result.firstName + " " + result.lastName, loginName: "@" + result.username, bio: "")
+            return Profile(username: result.username, name: result.firstName + " ", loginName: "@" + result.username, bio: "")
         }
     }
 }

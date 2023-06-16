@@ -12,7 +12,7 @@ final class AlertPresenter: AlertPresenterDelegate {
     
     func presentAlert(model: AlertModel){
         let alert = UIAlertController(title: model.title, message: model.message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: model.buttonText, style: .destructive, handler: model.comletition))
+        alert.addAction(UIAlertAction(title: model.buttonText, style: .destructive, handler: model.completion))
         
         delegate?.present(alert, animated: true)
     }

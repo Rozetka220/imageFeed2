@@ -13,7 +13,7 @@ extension URLSession {
             guard let data = data else {return completition(.failure(.dataError))}
             guard error == nil  else { return completition(.failure(.errorByClient))}
             guard let response = response else { return completition(.failure(.errorRequest))}
-            //по идее, здесь не должно быть главного потока, потому что может парсинг может оказаться очень ресурсозатратным?
+            //Не понимаю, с одной стороны, вроде как парсинг данных должен быть не в main потоке, так как тогда, при больших данных приложение повиснет. Но с другой стороны, без этого Dispatch приложение крашится
             DispatchQueue.main.async {
                 if let response = response as? HTTPURLResponse {
                     switch response.statusCode {
@@ -39,6 +39,7 @@ extension URLSession {
                     completition(.failure(.errorRequest))
                 }
             }
+            
         })
         return task
     }

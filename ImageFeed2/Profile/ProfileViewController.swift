@@ -24,7 +24,7 @@ final class ProfileViewController: UIViewController {
     let getBearerToken = OAuth2TokenStorage().token!
     
     private var alertDelegate: AlertPresenterDelegate?
- 
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -34,11 +34,8 @@ final class ProfileViewController: UIViewController {
         if profileService.profile == nil {
             showAlert()
         } else {
-            if let profile = profileService.profile {
-                updateProfileDetails(profile: profile)
-            } else {
-                return
-            }
+            guard let profile = profileService.profile else {return}
+            updateProfileDetails(profile: profile)
         }
     }
     
@@ -153,7 +150,7 @@ final class ProfileViewController: UIViewController {
             showAlert()
             return
         }
-
+        
         createProfileImage()
         createLabelName(name)
         createNicNameLabel(loginName)
@@ -169,7 +166,7 @@ final class ProfileViewController: UIViewController {
         let alerModel = AlertModel(title: title,
                                    message: message,
                                    buttonText: buttonText) { [weak self] _ in
-                        //перемещаемся на imageList
+            //перемещаемся на imageList
             self?.tabBarController?.selectedIndex = 0
         }
         return alerModel
