@@ -36,7 +36,7 @@ final class OAuth2Service {
             default:
                 self?.lastCode = nil
                 completion(.failure(.errorRequest))
-                //assertionFailure("Не удалось загрузить токен в OAuth2Service посредством использования generic")
+                assertionFailure("Не удалось загрузить токен в OAuth2Service посредством использования generic")
             }
         }
         self.task = task

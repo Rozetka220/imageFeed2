@@ -68,21 +68,12 @@ final class SplashViewController: UIViewController {
 }
 
 extension SplashViewController: AuthViewControllerDelegate {
-    private func presentAlert( completion: @escaping () -> ()) -> UIAlertController {
-        let alert = UIAlertController(title: "Внимание!", message: "Ошибка чтения ответа сервера, повторите попытку позже", preferredStyle: .alert)
+    private func presentAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Что-то пошло не так(", message: "Не удалось войти в систему", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { [weak self] _ in
-            completion()
+            self?.dismiss(animated: true)
         }))
         return alert
-    }
-    
-    private func backToSplashViewController() {
-        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
-        
-        let splashViewController = UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "splashViewControllerID")
-        
-        window.rootViewController = splashViewController
     }
     
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
@@ -96,9 +87,8 @@ extension SplashViewController: AuthViewControllerDelegate {
                     self.fetchProfile(token: token)
                     UIBlockingProgressHUD.dismiss()
                 case.failure(let error):
-                    vc.presentedViewController?.present(self.presentAlert(completion: {
-                        self.backToSplashViewController()
-                    }), animated: true)
+                    vc.presentedViewController?.present(self.presentAlert(), animated: true)
+                    UIBlockingProgressHUD.dismiss()
                 }
             }
         }
@@ -119,23 +109,9 @@ extension SplashViewController: AuthViewControllerDelegate {
                         }
                     }
                 default:
-                    self.presentedViewController?.present(self.presentAlert(completion: {
-                    }), animated: true)
+                    self.presentedViewController?.present(self.presentAlert(), animated: true)
                 }
             }
         }
-    }
-}
-
-
-//попытка сделать через делегат в алертпрезент, но не увенчалась успехом
-extension SplashViewController {
-    func createAlertText(title: String, message: String, buttonText: String) -> AlertModel {
-        let alerModel = AlertModel(title: title, //"Ошибка!",
-                                   message: message, // "Не удалось загрузить профиль \n повторите попытку позже",
-                                   buttonText: buttonText) { [weak self] _ in
-            self?.backToSplashViewController()
-        }
-        return alerModel
     }
 }
