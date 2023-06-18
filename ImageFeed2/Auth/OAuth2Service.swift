@@ -1,44 +1,47 @@
 import UIKit
 
 final class OAuth2Service {
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
+    
     func fetchAuthToken(code: String, completion: @escaping (Swift.Result<String, UnsplashError>) -> Void) {
+        assert(Thread.isMainThread)
+        
         //формируем url
         let url = createURL(code: code)
         //создаем  http запрос (url-request)
         let request = createHTTPRequest(url: url)
-        //создаем задачу (url-session)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            //Считаю, что использование assertionFailure является возможным, так как крашит приложение только в дебаге, что позволит легче находить ошибки. Для релизной версии есть .failure
-            guard let data = data else { assertionFailure("No Data"); completion(.failure(.dataError)); return}
-            //если ошибка будет на стороне клиента, а не сервера. В противном случае ошибка будет обработана в Dispatch
-            guard error == nil else {assertionFailure("Error from request"); completion(.failure(.errorByClient)); return}
-            DispatchQueue.main.async {
-                //распарсинг ответа
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let response = response as? HTTPURLResponse {
-                    switch response.statusCode {
-                    case 200..<300:
-                        do {
-                            let resp = try decoder.decode(UnsplashOAuth2Response.self, from: data)
-                            completion(.success(resp.accessToken))
-                        } catch {
-                            completion(.failure(.parsingError))
-                        }
-                    default:
-                        do {
-                            let resp = try decoder.decode(UnsplashOAuth2ResponseError.self, from: data)
-                            completion(.failure(.errorRequest))
-                        } catch {
-                            completion(.failure(.parsingError))
-                        }
-                    }
-                } else {
-                    return
-                }
+        let session = URLSession.shared
+        //гонка потоков
+        
+        if task != nil {
+            if lastCode != code {
+                task?.cancel()
+            } else {
+                return
+            }
+        } else {
+            if lastCode == code {
+                return
             }
         }
+        lastCode = code
+
+        let task = session.objectTask(for: request) { [weak self] (result: Result<UnsplashOAuth2Response, UnsplashError>) in
+            switch result {
+            case .success(let result):
+                completion(.success(result.accessToken))
+                self?.task = nil
+            default:
+                self?.lastCode = nil
+                completion(.failure(.errorRequest))
+                assertionFailure("Не удалось загрузить токен в OAuth2Service посредством использования generic")
+            }
+        }
+        self.task = task
         task.resume()
+        
     }
     
     func createURL(code: String) -> URL{
@@ -51,7 +54,6 @@ final class OAuth2Service {
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
-        print("urlComponents = ", urlComponents)
         return urlComponents.url!
     }
     func createHTTPRequest(url: URL) -> URLRequest{
