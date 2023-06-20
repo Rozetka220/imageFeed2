@@ -14,8 +14,8 @@
             filePath = "ImageFeed2/ImagesList/ImagesListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "ImagesListViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -605,8 +605,8 @@
             filePath = "ImageFeed2/Extension/Extension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "objectTask(for:completition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -868,6 +868,198 @@
                   offsetFromSymbolStart = "28">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1738A996-5E3D-4308-834A-DBD5A51013E8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/ImagesList/ImagesListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "fetchPhotosNextPage()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1738A996-5E3D-4308-834A-DBD5A51013E8 - 50d563ec6120a013"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageFeed2.ImagesListService.fetchPhotosNextPage() -&gt; ()"
+                  moduleName = "ImageFeed2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/odelmodel/Documents/YandexPracticum/sprint_7_to_13_2/ImageFeed2/ImageFeed2/ImagesList/ImagesListService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1812">
+               </Location>
+               <Location
+                  uuid = "1738A996-5E3D-4308-834A-DBD5A51013E8 - 4a2992c2d2d921bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;ImageFeed2.PhotoResult, ImageFeed2.UnsplashError&gt;) -&gt; () in ImageFeed2.ImagesListService.fetchPhotosNextPage() -&gt; ()"
+                  moduleName = "ImageFeed2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/odelmodel/Documents/YandexPracticum/sprint_7_to_13_2/ImageFeed2/ImageFeed2/ImagesList/ImagesListService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ADD7710A-9525-477E-9070-81390FBFEFD1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/Extension/Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "objectTask(for:completition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80888178-B579-4594-9FE0-F989115E1283"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/Extension/Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "objectTask(for:completition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B60216AE-7407-4A59-8129-5BACA8D2F1C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/ImagesList/ImagesListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "fetchPhotosNextPage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C1DFDE7F-4625-42BF-84E4-83059B65CF29"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/ImagesList/ImagesListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetchPhotosNextPage()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C1DFDE7F-4625-42BF-84E4-83059B65CF29 - 50d563ec6120a04d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageFeed2.ImagesListService.fetchPhotosNextPage() -&gt; ()"
+                  moduleName = "ImageFeed2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/odelmodel/Documents/YandexPracticum/sprint_7_to_13_2/ImageFeed2/ImageFeed2/ImagesList/ImagesListService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "612">
+               </Location>
+               <Location
+                  uuid = "C1DFDE7F-4625-42BF-84E4-83059B65CF29 - 5f24edea096c346e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;ImageFeed2.PhotoResult&gt;, ImageFeed2.UnsplashError&gt;) -&gt; () in ImageFeed2.ImagesListService.fetchPhotosNextPage() -&gt; ()"
+                  moduleName = "ImageFeed2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/odelmodel/Documents/YandexPracticum/sprint_7_to_13_2/ImageFeed2/ImageFeed2/ImagesList/ImagesListService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D01BEA2F-FAAC-4A2C-831B-265D7340DFD4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/ImagesList/ImagesListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "fetchPhotosNextPage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B24FBA5-A63B-477A-A94B-5ED6E13C6325"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/ImagesList/ImagesListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "fetchPhotosNextPage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA2F94B8-594E-4A2D-BF17-7C0E645C27EB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed2/ImagesList/ImagesListService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "fetchPhotosNextPage()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

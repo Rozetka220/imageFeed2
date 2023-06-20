@@ -22,6 +22,7 @@ extension URLSession {
                             let decodedResponse = try JSONDecoder().decode(T.self, from: data)
                             completition(.success(decodedResponse))
                         } catch {
+                            print(type(of: T.self))
                             completition(.failure(.parsingError))
                         }
                     default:
